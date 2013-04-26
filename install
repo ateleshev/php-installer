@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+NAME=$(basename $0)
+SCRIPT=$(readlink -f $0)
+SCRIPT_DIR=$(dirname $SCRIPT)
+. $SCRIPT_DIR/environment
+
+if [ ! -d $DIR_SRC ] ; then
+  mkdir -p $DIR_SRC
+fi
+
+cd $DIR_SRC
+if [ ! -f $DIR_SRC/$PHP_ARCHIVE_NAME ] ; then
+  wget $DOWNLOAD_URL
+fi
+
+if [ ! -d $PHP_DIR ] ; then
+  tar -xvf $PHP_ARCHIVE_NAME
+fi
+
+case "$OS" in
+  Linux)
+    sudo apt-get install g++ pkg-config curl libcurl4-gnutls-dev libssl-dev libxml2-dev libxslt1-dev \
+                         libfreetype6-dev libghc-text-icu-dev libicu-dev \
+                         libjpeg8-dev libpng++-dev \
+                         libmemcached-dev
+  ;;
+esac
+
+cd $PHP_DIR
+
+./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$PREFIX/etc/php \
+            --disable-ipv6 --enable-sockets --with-curl --enable-soap --enable-libxml --with-xsl \
+            --enable-zip --with-zlib --enable-ftp \
+            --enable-fpm \
+            --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
+            --enable-shmop --enable-calendar --enable-mbstring \
+            --enable-intl --with-openssl --with-mhash \
+            --with-gd --enable-gd-native-ttf --enable-gd-jis-conv --with-jpeg-dir --with-png-dir \
+            --with-freetype-dir --enable-exif --with-layout=GNU --with-regex=php \
+            --enable-maintainer-zts --with-zend-vm=CALL
+
+# install
+make install
+

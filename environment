@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+NAME=$(basename $0)
+SCRIPT=$(readlink -f $0)
+SCRIPT_DIR=$(dirname $SCRIPT)
+
+OS=$(uname -o)
+VERSION_FILE=$SCRIPT_DIR/version
+INSTALLATION_DIR=/usr/local/lib
+
+PHP_NAME=php
+PHP_VERSION=$(cat $VERSION_FILE)
+PHP_FULL_NAME=$PHP_NAME-$PHP_VERSION
+
+DIR=$INSTALLATION_DIR/$PHP_NAME$PHP_VERSION
+DIR_SRC=$DIR/src
+
+PHP_DIR=$DIR_SRC/$PHP_FULL_NAME
+PHP_ARCHIVE_TYPE=tar.bz2
+PHP_ARCHIVE_NAME=$PHP_FULL_NAME.$PHP_ARCHIVE_TYPE
+
+DOWNLOAD_HOST="ua1.php.net"
+DOWNLOAD_URL="http://$DOWNLOAD_HOST/distributions/$PHP_ARCHIVE_NAME"
+
+PREFIX=$DIR
+EPREFIX=$PREFIX
+
+PHP=$EPREFIX/bin/php
+PHPFPM=$EPREFIX/sbin/php-fpm
+
+PECL=$EPREFIX/bin/pecl
+PEAR=$EPREFIX/bin/pear
+PHPIZE=$EPREFIX/bin/phpize
+PHPCONFIG=$EPREFIX/bin/php-config
+
+EXTENSION_INI_DIR=$PREFIX/etc/php
+if [ -f "$PHPCONFIG" ]; then
+  EXTENSION_DIR=$($PHPCONFIG --extension-dir)
+fi
+
+if [ -f "$PEAR" ]; then
+  PEAR_DOWNLOAD_DIR=$($PEAR config-get download_dir)
+fi
+

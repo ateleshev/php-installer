@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+NAME=$(basename $0)
+SCRIPT=$(readlink -f $0)
+SCRIPT_DIR=$(dirname $SCRIPT)
+. $SCRIPT_DIR/environment
+
+install_http() {
+  $SCRIPT_DIR/install-http
+}
+
+install_pcntl() {
+  $SCRIPT_DIR/install-pcntl
+}
+
+case "$1" in
+  http)
+    install_http
+  ;;
+  pcntl)
+    install_pcntl
+  ;;
+  *)
+    echo "Usage: $NAME {http|pcntl}"
+  ;;
+esac

@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+NAME=$(basename $0)
+SCRIPT=$(readlink -f $0)
+SCRIPT_DIR=$(dirname $SCRIPT)
+. $SCRIPT_DIR/environment
+
+show_installed() {
+  echo "Search already installed  versions of PHP:"
+  find $INSTALLATION_DIR/* -iname "$PHP_NAME*" -type d -prune
+}
+
+show_version() {
+  echo "PHP Version: $PHP_VERSION"
+}
+
+change_version() {
+  echo -n "Enter PHP version [$PHP_VERSION]: "
+  while read INPUTED_VERSION
+  do
+    if [ "$INPUTED_VERSION" != "" ] ; then
+      echo -n "Change PHP version to $INPUTED_VERSION ... "
+      echo $INPUTED_VERSION > $VERSION_FILE || echo "[ Error ]" && echo "[ OK ]"
+      break
+    fi
+  done
+}
+
+update_php() {
+  $SCRIPT_DIR/update
+}
+
+install_php() {
+  $SCRIPT_DIR/install
+}
+
+install_extension() {
+  $SCRIPT_DIR/extension
+}
+
+show_help() {
+  echo "Author:   Artem Teleshev <artem.teleshev@gmail.com>"
+  echo "Version:  1.0"
+  echo ""
+  echo "Commands:"
+  echo "  list       - show list of installed versions of PHP"
+  echo "  show       - show used version of PHP"
+  echo "  change     - change used version of PHP"
+  echo "  install    - installation of selected version of PHP"
+  echo "  extension  - show menu for work with extensions of PHP"
+  echo "  help       - show this message"
+}
+case "$1" in
+  list)
+    show_installed
+  ;;
+  show)
+    show_version
+  ;;
+  change)
+    change_version
+  ;;
+  update)
+    update_php
+  ;;
+  install)
+    install_php
+  ;;
+  extension)
+    install_extension $2
+  ;;
+  help)
+    show_help
+  ;;
+  *)
+    echo "Usage: $NAME {list|show|change|update|install|extension|help}"
+  ;;
+esac

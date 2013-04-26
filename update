@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+NAME=$(basename $0)
+SCRIPT=$(readlink -f $0)
+SCRIPT_DIR=$(dirname $SCRIPT)
+cd $SCRIPT_DIR
+
+. $SCRIPT_DIR/environment
+
+cd /usr/local/bin
+ln -s $DIR/bin/peardev
+ln -s $DIR/bin/pecl
+ln -s $DIR/bin/phar
+ln -s $DIR/bin/php 
+ln -s $DIR/bin/php-cgi
+ln -s $DIR/bin/php-config
+ln -s $DIR/bin/phpize
+
+cd /usr/local/sbin
+ln -s $DIR/sbin/php-fpm
+
