@@ -16,11 +16,11 @@ show_version() {
 
 change_version() {
   echo -n "Enter PHP version [$PHP_VERSION]: "
-  while read INPUTED_VERSION
+  while read INPUTTED_VERSION
   do
-    if [ "$INPUTED_VERSION" != "" ] ; then
-      echo -n "Change PHP version to $INPUTED_VERSION ... "
-      echo $INPUTED_VERSION > $VERSION_FILE || echo "[ Error ]" && echo "[ OK ]"
+    if [ "$INPUTTED_VERSION" != "" ] ; then
+      echo -n "Change PHP version to $INPUTTED_VERSION ... "
+      echo $INPUTTED_VERSION > $VERSION_FILE || echo "[ Error ]" && echo "[ OK ]"
       break
     fi
   done
@@ -38,6 +38,10 @@ install_extension() {
   $SCRIPT_DIR/extension $1
 }
 
+delete_php() {
+  $SCRIPT_DIR/delete
+}
+
 show_help() {
   echo "-------------------------------------------------------"
   echo " Script for easy installation more one version of PHP. "
@@ -51,6 +55,7 @@ show_help() {
   echo "  change     - change used version of PHP"
   echo "  install    - installation of selected version of PHP"
   echo "  extension  - show menu for work with extensions of PHP"
+  echo "  delete     - delete of selected version of PHP"
   echo "  help       - show this message"
 }
 
@@ -73,10 +78,13 @@ case "$1" in
   extension)
     install_extension $2
   ;;
+  delete)
+    delete_php
+  ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|show|change|update|install|extension|help}"
+    echo "Usage: $NAME {list|show|change|update|install|extension|delete|help}"
   ;;
 esac

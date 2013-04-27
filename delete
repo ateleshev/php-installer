@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+NAME=$(basename $0)
+SCRIPT=$(readlink -f $0)
+SCRIPT_DIR=$(dirname $SCRIPT)
+. $SCRIPT_DIR/environment
+
+if [ -d $DIR ] ; then
+  echo -n "Did you really want to delete PHP $PHP_VERSION from your $OS system? (yes/[no]): "
+  while read INPUTTED_CONFIRMATION
+  do
+    if [ "$INPUTTED_CONFIRMATION" = "yes" ] ; then
+      echo -n "Started to delete PHP $PHP_VERSION from your $OS system ... "
+      rm -rf $DIR || echo "[ Error ]" && echo "[ OK ]" && echo > $VERSION_FILE
+    else
+      echo "Cancel deletion of PHP $PHP_VERSION from your $OS system ... [ OK ]"
+    fi
+    break
+  done
+else
+  echo "The PHP $PHP_VERSION doesn't installed."
+fi
+
