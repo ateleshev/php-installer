@@ -19,11 +19,11 @@ fi
 
 cd $DIR_SRC
 if [ ! -f $DIR_SRC/$PHP_ARCHIVE_NAME ] ; then
-  $("$WGET_COMMAND $DOWNLOAD_URL")
+  $WGET_COMMAND $DOWNLOAD_URL
 fi
 
 if [ ! -d $PHP_DIR ] ; then
-  $("$TAR_COMMAND -xvf $PHP_ARCHIVE_NAME")
+  $TAR_COMMAND -xvf $PHP_ARCHIVE_NAME
 fi
 
 case "$OS" in
