@@ -6,7 +6,7 @@ SCRIPT_DIR=$(dirname $SCRIPT)
 . $SCRIPT_DIR/environment
 
 show_installed() {
-  echo "Search already installed  versions of PHP:"
+  echo "Search already installed versions of PHP:"
   find $INSTALLATION_DIR/* -iname "$PHP_NAME*" -type d -prune
 }
 
@@ -35,12 +35,15 @@ install_php() {
 }
 
 install_extension() {
-  $SCRIPT_DIR/extension
+  $SCRIPT_DIR/extension $1
 }
 
 show_help() {
-  echo "Author:   Artem Teleshev <artem.teleshev@gmail.com>"
-  echo "Version:  1.0"
+  echo "-------------------------------------------------------"
+  echo " Script for easy installation more one version of PHP. "
+  echo "-------------------------------------------------------"
+  echo "Author:   $AUTHOR"
+  echo "Version:  $VERSION"
   echo ""
   echo "Commands:"
   echo "  list       - show list of installed versions of PHP"
@@ -50,6 +53,7 @@ show_help() {
   echo "  extension  - show menu for work with extensions of PHP"
   echo "  help       - show this message"
 }
+
 case "$1" in
   list)
     show_installed

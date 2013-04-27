@@ -8,14 +8,47 @@ cd $SCRIPT_DIR
 . $SCRIPT_DIR/environment
 
 cd /usr/local/bin
-ln -s $DIR/bin/peardev
-ln -s $DIR/bin/pecl
-ln -s $DIR/bin/phar
-ln -s $DIR/bin/php 
-ln -s $DIR/bin/php-cgi
-ln -s $DIR/bin/php-config
-ln -s $DIR/bin/phpize
+
+  if [ -f peardev ] ; then
+    rm peardev 
+  fi
+  ln -s $DIR/bin/peardev
+
+  if [ -f pecl ] ; then
+    rm pecl 
+  fi
+  ln -s $DIR/bin/pecl
+
+  if [ -f phar ] ; then
+    rm phar 
+  fi
+  ln -s $DIR/bin/phar
+
+  if [ -f php ] ; then
+    rm php 
+  fi
+  ln -s $DIR/bin/php 
+
+  if [ -f php-cgi ] ; then
+    rm php-cgi 
+  fi
+  ln -s $DIR/bin/php-cgi
+
+  if [ -f php-config ] ; then
+    rm php-config 
+  fi
+  ln -s $DIR/bin/php-config
+
+  if [ -f phpize ] ; then
+    rm phpize 
+  fi
+  ln -s $DIR/bin/phpize
 
 cd /usr/local/sbin
-ln -s $DIR/sbin/php-fpm
+
+  if [ -f php-fpm ] ; then
+    rm php-fpm 
+  fi
+
+  ln -s $DIR/sbin/php-fpm
 

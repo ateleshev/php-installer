@@ -13,6 +13,19 @@ install_pcntl() {
   $SCRIPT_DIR/install-pcntl
 }
 
+show_help() {
+  echo "------------------------------------------------"
+  echo " Script for easy installation of PHP extension. "
+  echo "------------------------------------------------"
+  echo "Author:   $AUTHOR"
+  echo "Version:  $VERSION"
+  echo ""
+  echo "Commands:"
+  echo "  http       - installation of pecl_http extension (http://www.php.net/manual/en/book.http.php)"
+  echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
+  echo "  help       - show this message"
+}
+
 case "$1" in
   http)
     install_http
@@ -20,7 +33,10 @@ case "$1" in
   pcntl)
     install_pcntl
   ;;
+  help)
+    show_help
+  ;;
   *)
-    echo "Usage: $NAME {http|pcntl}"
+    echo "Usage: $NAME {http|pcntl|help}"
   ;;
 esac
