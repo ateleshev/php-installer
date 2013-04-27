@@ -24,7 +24,7 @@ Create symlink for main script:
 Execute command:
 ```console
 (~) # php-installer
-Usage: php-installer {list|show|change|update|install|extension|help}
+Usage: php-installer {list|show|change|update|install|extension|delete|help}
 (~) # php-installer extension
 Usage: extension {http|pcntl|help}
 (~) # php-installer help
