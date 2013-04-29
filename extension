@@ -5,12 +5,27 @@ SCRIPT=$(readlink -f $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
 . $SCRIPT_DIR/environment
 
+show_installed() {
+  echo "List of installed extensions for PHP $PHP_VERSION:"
+  find $EXTENSION_DIR -iname '*.so' -type f
+  echo "List of enabled extensions for PHP $PHP_VERSION:"
+  cat $EXTENSION_INI_DIR/*
+}
+
 install_http() {
   $SCRIPT_DIR/install-http
 }
 
 install_pcntl() {
   $SCRIPT_DIR/install-pcntl
+}
+
+install_memcached() {
+  $SCRIPT_DIR/install-memcached
+}
+
+install_gearman() {
+  $SCRIPT_DIR/install-gearman
 }
 
 show_help() {
@@ -21,22 +36,34 @@ show_help() {
   echo "Version:  $VERSION"
   echo ""
   echo "Commands:"
+  echo "  list       - list of instaled PHP extension"
   echo "  http       - installation of pecl_http extension (http://www.php.net/manual/en/book.http.php)"
   echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
+  echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
+  echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
   echo "  help       - show this message"
 }
 
 case "$1" in
+  list)
+    show_installed
+  ;;
   http)
     install_http
   ;;
   pcntl)
     install_pcntl
   ;;
+  memcached)
+    install_memcached
+  ;;
+  gearman)
+    install_gearman
+  ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {http|pcntl|help}"
+    echo "Usage: $NAME {list|http|pcntl|memcached|gearman|help}"
   ;;
 esac

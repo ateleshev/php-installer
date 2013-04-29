@@ -61,3 +61,29 @@ if [ -f "$PEAR" ]; then
   PEAR_DOWNLOAD_DIR=$($PEAR config-get download_dir)
 fi
 
+function check_php_extension() {
+  if [ -f $EXTENSION_PATH_TO_INI ] ; then
+    echo "The '$EXTENSION_NAME' PHP extension is already installed in PHP $PHP_VERSION"
+    echo -n "Reinstall '$EXTENSION_NAME' extension? (yes/[no]): "
+    while read INPUTTED_CONFIRMATION
+    do
+      if [ "$INPUTTED_CONFIRMATION" = "yes" ] ; then
+        echo -n "Started to delete '$EXTENSION_NAME' extension for PHP $PHP_VERSION ... "
+        rm $EXTENSION_PATH_TO_INI || echo "[ Error ]" && echo "[ OK ]"
+
+        if [ -f $EXTENSION_PATH_TO_SO ] ; then
+          rm $EXTENSION_PATH_TO_SO
+        fi;
+      else
+        echo "Cancel installation '$EXTENSION_NAME' extension for PHP $PHP_VERSION ... [ OK ]"
+        exit 0
+      fi
+      break
+    done
+  fi;
+
+  if [ ! -d $EXTENSION_INI_DIR ] ; then
+    mkdir -p $EXTENSION_INI_DIR
+  fi;
+}
+

@@ -42,6 +42,10 @@ delete_php() {
   $SCRIPT_DIR/delete
 }
 
+setup_php() {
+  $SCRIPT_DIR/setup
+}
+
 show_help() {
   echo "-------------------------------------------------------"
   echo " Script for easy installation more one version of PHP. "
@@ -56,6 +60,7 @@ show_help() {
   echo "  install    - installation of selected version of PHP"
   echo "  extension  - show menu for work with extensions of PHP"
   echo "  delete     - delete of selected version of PHP"
+  echo "  setup      - setup needed package for PHP compilation"
   echo "  help       - show this message"
 }
 
@@ -78,13 +83,13 @@ case "$1" in
   extension)
     install_extension $2
   ;;
-  delete)
-    delete_php
+  setup)
+    setup_php
   ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|show|change|update|install|extension|delete|help}"
+    echo "Usage: $NAME {list|show|change|update|install|extension|delete|setup|help}"
   ;;
 esac

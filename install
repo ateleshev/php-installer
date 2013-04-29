@@ -5,14 +5,6 @@ SCRIPT=$(readlink -f $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
 . $SCRIPT_DIR/environment
 
-if [ ! -f $WGET_COMMAND ] ; then
-  echo "You need to install wget package to proceed installation ... [ Error ]"
-fi
-
-if [ ! -f $TAR_COMMAND ] ; then
-  echo "You need to install tar package to proceed installation ... [ Error ]"
-fi
-
 if [ ! -d $DIR_SRC ] ; then
   mkdir -p $DIR_SRC
 fi
@@ -25,17 +17,6 @@ fi
 if [ ! -d $PHP_DIR ] ; then
   $TAR_COMMAND -xvf $PHP_ARCHIVE_NAME
 fi
-
-case "$OS" in
-  'Linux' | 'GNU/Linux')
-    if [ -f $APT_GET_COMMAND ] ; then
-      sudo $APT_GET_COMMAND install g++ pkg-config curl libcurl4-gnutls-dev libssl-dev libxml2-dev libxslt1-dev \
-                           libfreetype6-dev libghc-text-icu-dev libicu-dev \
-                           libjpeg8-dev libpng++-dev \
-                           libmemcached-dev
-    fi
-  ;;
-esac
 
 cd $PHP_DIR
 

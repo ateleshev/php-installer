@@ -3,7 +3,7 @@
 NAME=$(basename $0)
 SCRIPT=$(readlink -f $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
-cd $SCRIPT_DIR
+cd $SCRIPT_DIR || exit 1 && echo "Change current directory to '$SCRIPT_DIR'"
 
 . $SCRIPT_DIR/environment
 
@@ -12,25 +12,17 @@ EXTENSION_NAME=pcntl
 EXTENSION_PATH_TO_SO=$EXTENSION_DIR/$EXTENSION_NAME.so
 EXTENSION_PATH_TO_INI=$EXTENSION_INI_DIR/$EXTENSION_NAME.ini
 
-if [ ! -d $EXTENSION_INI_DIR ] ; then
-  mkdir -p $EXTENSION_INI_DIR
-fi;
+check_php_extension
 
-if [ -f $EXTENSION_PATH_TO_SO ] ; then
-  rm $EXTENSION_PATH_TO_SO
-fi;
+cd $PHP_PCNTL_DIR || exit 1 && echo "Change current directory to '$PHP_PCNTL_DIR'"
 
-cd $PHP_PCNTL_DIR
-echo "Change current directory to '$PHP_PCNTL_DIR'."
-
-$PHPIZE
+$PHPIZE || exit 1
 
 # configure
-./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-$EXTENSION_NAME --enable-shared=PKGS --with-php-config=$PHPCONFIG || exit_with_error "Can't execute 'configure'."
+./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-$EXTENSION_NAME --enable-shared=PKGS --with-php-config=$PHPCONFIG || exit 1
 
 # install
-make install
+make install || exit 1
 
-echo "extension=$EXTENSION_NAME.so" > $EXTENSION_PATH_TO_INI
-echo "Save 'extension=$EXTENSION_NAME.so' to '$EXTENSION_PATH_TO_INI'."
+echo "extension=$EXTENSION_NAME.so" > $EXTENSION_PATH_TO_INI && echo "Save 'extension=$EXTENSION_NAME.so' to '$EXTENSION_PATH_TO_INI'"
 
