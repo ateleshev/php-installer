@@ -39,7 +39,7 @@ esac
 
 cd $PHP_DIR
 
-./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$PREFIX/etc/php \
+./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR \
             --disable-ipv6 --enable-sockets --with-curl --enable-soap --enable-libxml --with-xsl \
             --enable-zip --with-zlib --enable-ftp \
             --enable-fpm \
@@ -52,4 +52,7 @@ cd $PHP_DIR
 
 # install
 make install
+
+# copy ini file
+cp $SCRIPT_DIR_ETC/php.ini $PHP_INI_DIR/
 
