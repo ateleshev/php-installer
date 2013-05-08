@@ -83,6 +83,9 @@ case "$1" in
   extension)
     install_extension $2
   ;;
+  delete)
+    delete_php
+  ;;
   setup)
     setup_php
   ;;
