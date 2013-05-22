@@ -7,48 +7,36 @@ cd $SCRIPT_DIR
 
 . $SCRIPT_DIR/environment
 
-cd /usr/local/bin
+################################################################################
+# /usr/local/bin
+################################################################################
+create_symlink_to "peardev" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "pecl" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "phar" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "php" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "php-cgi" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "php-config" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "phpize" "$DIR/bin" "/usr/local/bin"
 
-  if [ -f peardev ] ; then
-    rm peardev 
-  fi
-  ln -s $DIR/bin/peardev
+################################################################################
+# /usr/local/sbin
+################################################################################
+create_symlink_to "php-fpm" "$DIR/sbin" "/usr/local/sbin"
 
-  if [ -f pecl ] ; then
-    rm pecl 
-  fi
-  ln -s $DIR/bin/pecl
+################################################################################
+# SUDO
+################################################################################
+sudo echo "Start modification with root privileges" || exit 1
 
-  if [ -f phar ] ; then
-    rm phar 
-  fi
-  ln -s $DIR/bin/phar
+################################################################################
+# PHP: default socket
+################################################################################
 
-  if [ -f php ] ; then
-    rm php 
-  fi
-  ln -s $DIR/bin/php 
+create_symlink_to "php5-fpm.sock" "$DIR/var/run" "/var/run"
 
-  if [ -f php-cgi ] ; then
-    rm php-cgi 
-  fi
-  ln -s $DIR/bin/php-cgi
+################################################################################
+# Nginx configuration: Add upstream 
+################################################################################
 
-  if [ -f php-config ] ; then
-    rm php-config 
-  fi
-  ln -s $DIR/bin/php-config
-
-  if [ -f phpize ] ; then
-    rm phpize 
-  fi
-  ln -s $DIR/bin/phpize
-
-cd /usr/local/sbin
-
-  if [ -f php-fpm ] ; then
-    rm php-fpm 
-  fi
-
-  ln -s $DIR/sbin/php-fpm
+create_symlink_to "upstream.conf" "$SCRIPT_DIR/etc/nginx" "/etc/nginx/conf.d"
 

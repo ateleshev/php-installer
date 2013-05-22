@@ -20,20 +20,46 @@ fi
 
 cd $PHP_DIR
 
-./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR \
-            --disable-ipv6 --enable-sockets --with-curl --enable-soap --enable-libxml --with-xsl \
-            --enable-zip --with-zlib --enable-ftp \
+./configure --prefix=$PREFIX \
+            --exec-prefix=$EPREFIX \
+            --with-config-file-scan-dir=$EXTENSION_INI_DIR \
+            --disable-ipv6 \
+            --with-mhash \
+            --enable-shmop \
+            --enable-sockets \
+            --with-openssl \
+            --with-curl \
+            --enable-soap \
+            --enable-libxml \
+            --with-xsl \
+            --enable-zip \
+            --with-zlib \
+            --enable-ftp \
             --enable-fpm \
-            --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
-            --enable-shmop --enable-calendar --enable-mbstring \
-            --enable-intl --with-openssl --with-mhash \
-            --with-gd --enable-gd-native-ttf --enable-gd-jis-conv --with-jpeg-dir --with-png-dir \
-            --with-freetype-dir --enable-exif --with-layout=GNU --with-regex=php \
-            --enable-maintainer-zts --with-zend-vm=CALL
+            --with-mysql=mysqlnd \
+            --with-mysqli=mysqlnd \
+            --with-pdo-mysql=mysqlnd \
+            --enable-calendar \
+            --enable-mbstring \
+            --enable-intl \
+            --with-gd \
+            --enable-gd-native-ttf \
+            --enable-gd-jis-conv \
+            --with-jpeg-dir \
+            --with-png-dir \
+            --with-freetype-dir \
+            --enable-exif \
+            --with-layout=GNU \
+            --with-regex=php \
+            --enable-maintainer-zts \
+            --with-zend-vm=CALL
 
 # install
 make install
 
 # copy ini file
-cp $SCRIPT_DIR_ETC/php.ini $PHP_INI_DIR/
+cp $SCRIPT_DIR_ETC/php/php.ini $PHP_INI_DIR/
+
+# copy fpm configuration file
+cp $SCRIPT_DIR_ETC/php/php-fpm.conf $PHP_INI_DIR/
 
