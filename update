@@ -28,6 +28,14 @@ create_symlink_to "php-fpm" "$DIR/sbin" "/usr/local/sbin"
 ################################################################################
 sudo echo "Start modification with root privileges" || exit 1
 
+
+PHP_FPM_PID=$(ps ax | grep  php-fpm:.*$DIR | grep -v grep | awk '{print $1}')
+if [ $PHP_FPM_PID > 0 ] ; then
+  echo "Found started php-fpm: $PHP_FPM_PID ($DIR)"
+else
+  sudo $DIR/sbin/php-fpm
+fi
+
 ################################################################################
 # PHP: default socket
 ################################################################################

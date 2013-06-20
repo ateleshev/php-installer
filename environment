@@ -103,7 +103,7 @@ function create_symlink_to() {
       cd $SYMLINK_TO || echo "[ Error ]" && echo "[ OK ]"
 
       if [ "$(pwd)" = "$SYMLINK_TO" ] ; then
-        if [ -e $SYMLINK_NAME ] ; then
+        if [ -L $SYMLINK_NAME ] || [ -e $SYMLINK_NAME ] ; then
           echo -n " Trying to delete '$SYMLINK_NAME' ... "
           sudo rm $SYMLINK_NAME || echo "[ Error ]" && echo "[ OK ]"
         fi
