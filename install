@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 NAME=$(basename $0)
-SCRIPT=$(readlink -f $0)
+SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
 . $SCRIPT_DIR/environment
 
