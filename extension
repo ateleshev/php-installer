@@ -28,6 +28,10 @@ install_gearman() {
   $SCRIPT_DIR/install-gearman
 }
 
+install_xdebug() {
+  $SCRIPT_DIR/install-xdebug
+}
+
 show_help() {
   echo "------------------------------------------------"
   echo " Script for easy installation of PHP extension. "
@@ -60,10 +64,13 @@ case "$1" in
   gearman)
     install_gearman
   ;;
+  xdebug)
+    install_xdebug
+  ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|http|pcntl|memcached|gearman|help}"
+    echo "Usage: $NAME {list|http|pcntl|memcached|gearman|xdebug|help}"
   ;;
 esac

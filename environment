@@ -53,6 +53,7 @@ PHPCONFIG=$EPREFIX/bin/php-config
 
 PHP_INI_DIR=$PREFIX/etc
 EXTENSION_INI_DIR=$PHP_INI_DIR/php
+
 if [ -f "$PHPCONFIG" ]; then
   EXTENSION_DIR=$($PHPCONFIG --extension-dir)
 fi
@@ -61,7 +62,7 @@ if [ -f "$PEAR" ]; then
   PEAR_DOWNLOAD_DIR=$($PEAR config-get download_dir)
 fi
 
-function check_php_extension() {
+function check_php_extension() { # {{{
   if [ -f $EXTENSION_PATH_TO_INI ] ; then
     echo "The '$EXTENSION_NAME' PHP extension is already installed in PHP $PHP_VERSION"
     echo -n "Reinstall '$EXTENSION_NAME' extension? (yes/[no]): "
@@ -85,9 +86,66 @@ function check_php_extension() {
   if [ ! -d $EXTENSION_INI_DIR ] ; then
     mkdir -p $EXTENSION_INI_DIR
   fi;
-}
+} # }}}
 
-function create_symlink_to() {
+function install_php_pecl_extension() { # {{{
+  EXTENSION_NAME=$1
+  EXTENSION_VERSION=$2
+
+  if [ $3 ]; then
+    EXTENSION_TYPE=$3
+  else
+    EXTENSION_TYPE=extension
+  fi;
+
+  if [ $4 ]; then
+    EXTENSION_DOWNLOAD_NAME=$4
+  else
+    EXTENSION_DOWNLOAD_NAME=$EXTENSION_NAME
+  fi;
+
+  EXTENSION_FULL_NAME=$EXTENSION_DOWNLOAD_NAME-$EXTENSION_VERSION
+  EXTENSION_SOURCE=$DIR_SRC/$EXTENSION_FULL_NAME
+  EXTENSION_ARCHIVE=$EXTENSION_SOURCE.tgz
+
+  EXTENSION_SO=$EXTENSION_NAME.so
+  EXTENSION_PATH_TO_SO=$EXTENSION_DIR/$EXTENSION_SO
+
+  EXTENSION_INI=$EXTENSION_NAME.ini
+  EXTENSION_PATH_TO_INI=$EXTENSION_INI_DIR/$EXTENSION_INI
+
+  check_php_extension
+
+  cd $DIR_SRC && echo "Change current directory to '$DIR_SRC'" || exit 1
+
+  echo "Try to downloaded: '$EXTENSION_DOWNLOAD_NAME'"
+  $PECL download $EXTENSION_DOWNLOAD_NAME || exit 1
+
+  if [ -f $DIR_SRC/channel.xml ] ; then
+    rm $DIR_SRC/channel.xml
+  fi;
+
+  echo "Start unzip: '$EXTENSION_ARCHIVE'"
+  gzip -d < $EXTENSION_ARCHIVE | tar -xvf -
+
+  if [ -f $DIR_SRC/package.xml ] ; then
+    rm $DIR_SRC/package.xml
+  fi;
+
+  cd $EXTENSION_SOURCE || exit 1 && echo "Change current directory to '$EXTENSION_SOURCE'"
+
+  $PHPIZE || exit 1
+
+  # configure
+  ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-$EXTENSION_NAME --enable-shared=PKGS --with-php-config=$PHPCONFIG || exit 1
+
+  # install
+  make install || exit 1 
+
+  echo "$EXTENSION_TYPE=$EXTENSION_SO" > $EXTENSION_PATH_TO_INI && echo "Save '$EXTENSION_TYPE=$EXTENSION_SO' to '$EXTENSION_PATH_TO_INI'"
+} # }}}
+
+function create_symlink_to() { # {{{
   SYMLINK_NAME=$1
   SYMLINK_FROM=$2
   SYMLINK_TO=$3
@@ -122,5 +180,5 @@ function create_symlink_to() {
   fi
 
   echo " "
-}
+} # }}}
 
