@@ -142,7 +142,7 @@ function install_php_pecl_extension() { # {{{
   # install
   make install || exit 1 
 
-  echo "$EXTENSION_TYPE=$EXTENSION_SO" > $EXTENSION_PATH_TO_INI && echo "Save '$EXTENSION_TYPE=$EXTENSION_SO' to '$EXTENSION_PATH_TO_INI'"
+  echo "$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO" > $EXTENSION_PATH_TO_INI && echo "Save '$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO' to '$EXTENSION_PATH_TO_INI'"
 } # }}}
 
 function create_symlink_to() { # {{{
