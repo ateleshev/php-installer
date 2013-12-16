@@ -7,5 +7,5 @@ cd $SCRIPT_DIR || exit 1 && echo "Change current directory to '$SCRIPT_DIR'"
 
 . $SCRIPT_DIR/environment
 
-install_php_pecl_extension "http" "2.0.3" "extension" "pecl_http"
+install_php_pecl_extension "propro" "1.0.0" "extension"
 

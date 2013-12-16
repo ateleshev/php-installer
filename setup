@@ -13,7 +13,9 @@ case "$OS" in
                                     libcurl4-gnutls-dev libssl-dev libxml2-dev libxslt1-dev \
                                     libfreetype6-dev libghc-text-icu-dev libicu-dev \
                                     libjpeg8-dev libpng++-dev \
-                                    libmemcached-dev libgearman-dev
+                                    libmemcached-dev libgearman-dev \
+                                    libvpx-dev libvpx-doc libvpx1 \
+                                    libxpm-dev xpmutils libxpm4
     fi
   ;;
 esac

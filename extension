@@ -12,6 +12,14 @@ show_installed() {
   cat $EXTENSION_INI_DIR/*
 }
 
+install_raphf() {
+  $SCRIPT_DIR/install-raphf
+}
+
+install_propro() {
+  $SCRIPT_DIR/install-propro
+}
+
 install_http() {
   $SCRIPT_DIR/install-http
 }
@@ -41,6 +49,8 @@ show_help() {
   echo ""
   echo "Commands:"
   echo "  list       - list of instaled PHP extension"
+  echo "  raphf      - installation of raphf extension (http://pecl.php.net/package/raphf)"
+  echo "  propro     - installation of propro extension (http://pecl.php.net/package/propro)"
   echo "  http       - installation of pecl_http extension (http://www.php.net/manual/en/book.http.php)"
   echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
   echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
@@ -51,6 +61,12 @@ show_help() {
 case "$1" in
   list)
     show_installed
+  ;;
+  raphf)
+    install_raphf
+  ;;
+  propro)
+    install_propro
   ;;
   http)
     install_http
@@ -71,6 +87,6 @@ case "$1" in
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|http|pcntl|memcached|gearman|xdebug|help}"
+    echo "Usage: $NAME {list|raphf|propro|http|pcntl|memcached|gearman|xdebug|help}"
   ;;
 esac

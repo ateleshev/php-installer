@@ -106,12 +106,13 @@ function install_php_pecl_extension() { # {{{
 
   EXTENSION_FULL_NAME=$EXTENSION_DOWNLOAD_NAME-$EXTENSION_VERSION
   EXTENSION_SOURCE=$DIR_SRC/$EXTENSION_FULL_NAME
-  EXTENSION_ARCHIVE=$EXTENSION_SOURCE.tgz
 
   EXTENSION_SO=$EXTENSION_NAME.so
   EXTENSION_PATH_TO_SO=$EXTENSION_DIR/$EXTENSION_SO
 
-  EXTENSION_INI=$EXTENSION_NAME.ini
+  EXTENSION_PRIORITY=$(ls -l $EXTENSION_INI_DIR/ | grep ini | wc -l | awk '{ printf "%03d", $0 + 1 }') || 000
+
+  EXTENSION_INI=$EXTENSION_PRIORITY-$EXTENSION_NAME.ini
   EXTENSION_PATH_TO_INI=$EXTENSION_INI_DIR/$EXTENSION_INI
 
   check_php_extension
@@ -124,9 +125,17 @@ function install_php_pecl_extension() { # {{{
   if [ -f $DIR_SRC/channel.xml ] ; then
     rm $DIR_SRC/channel.xml
   fi;
-
+  
   echo "Start unzip: '$EXTENSION_ARCHIVE'"
-  gzip -d < $EXTENSION_ARCHIVE | tar -xvf -
+  if [ -f $EXTENSION_SOURCE.tgz ]; then
+    gzip -d < $EXTENSION_SOURCE.tgz | tar -xvf -
+  elif [ -f $EXTENSION_SOURCE.tar ]; then
+    tar -xvf $EXTENSION_SOURCE.tar
+  else
+    echo "Incorrect $EXTENSION_SOURCE file extension, allowed: tgz, tar"
+    exit 1
+  fi
+
 
   if [ -f $DIR_SRC/package.xml ] ; then
     rm $DIR_SRC/package.xml

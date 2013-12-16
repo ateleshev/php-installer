@@ -24,7 +24,8 @@ cd $PHP_DIR
             --exec-prefix=$EPREFIX \
             --with-config-file-scan-dir=$EXTENSION_INI_DIR \
             --disable-ipv6 \
-            --with-mhash \
+#            --with-libdir=lib64 \
+#            --with-mhash \
             --enable-shmop \
             --enable-sockets \
             --with-openssl \
@@ -47,8 +48,8 @@ cd $PHP_DIR
             --enable-gd-jis-conv \
             --with-jpeg-dir \
             --with-png-dir \
-            --with-freetype-dir \
-            --enable-exif \
+#            --with-freetype-dir \
+#            --enable-exif \
             --with-layout=GNU \
             --with-regex=php \
             --enable-maintainer-zts \
