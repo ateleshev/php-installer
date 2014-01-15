@@ -30,6 +30,10 @@ update_php() {
   $SCRIPT_DIR/update
 }
 
+configure_php() {
+  $SCRIPT_DIR/configure
+}
+
 install_php() {
   $SCRIPT_DIR/install
 }
@@ -59,6 +63,7 @@ show_help() {
   echo "  change     - change used version of PHP"
   echo "  install    - installation of selected version of PHP"
   echo "  extension  - show menu for work with extensions of PHP"
+  echo "  configure  - create configuration files of PHP"
   echo "  delete     - delete of selected version of PHP"
   echo "  setup      - setup needed package for PHP compilation"
   echo "  help       - show this message"
@@ -83,6 +88,9 @@ case "$1" in
   extension)
     install_extension $2
   ;;
+  configure)
+    configure_php
+  ;;
   delete)
     delete_php
   ;;
@@ -93,6 +101,6 @@ case "$1" in
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|show|change|update|install|extension|delete|setup|help}"
+    echo "Usage: $NAME {list|show|change|update|install|extension|configure|delete|setup|help}"
   ;;
 esac

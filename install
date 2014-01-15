@@ -6,61 +6,57 @@ SCRIPT_DIR=$(dirname $SCRIPT)
 . $SCRIPT_DIR/environment
 
 if [ ! -d $DIR_SRC ] ; then
-  mkdir -p $DIR_SRC
+  $MKDIR_COMMAND -p $DIR_SRC || exit 1
 fi
 
-cd $DIR_SRC
+cd $DIR_SRC || exit 2
 if [ ! -f $DIR_SRC/$PHP_ARCHIVE_NAME ] ; then
-  $WGET_COMMAND $DOWNLOAD_URL
+  $WGET_COMMAND $DOWNLOAD_URL || exit 3
 fi
 
 if [ ! -d $PHP_DIR ] ; then
-  $TAR_COMMAND -xvf $PHP_ARCHIVE_NAME
+  $TAR_COMMAND -xvf $PHP_ARCHIVE_NAME || exit 4
 fi
 
-cd $PHP_DIR
+cd $PHP_DIR || exit 5
 
 ./configure --prefix=$PREFIX \
             --exec-prefix=$EPREFIX \
             --with-config-file-scan-dir=$EXTENSION_INI_DIR \
             --disable-ipv6 \
-#            --with-libdir=lib64 \
-#            --with-mhash \
-            --enable-shmop \
-            --enable-sockets \
-            --with-openssl \
-            --with-curl \
-            --enable-soap \
-            --enable-libxml \
-            --with-xsl \
             --enable-zip \
-            --with-zlib \
             --enable-ftp \
             --enable-fpm \
+            --enable-intl \
+            --enable-exif \
+            --enable-soap \
+            --enable-shmop \
+            --enable-libxml \
+            --enable-sockets \
+            --enable-calendar \
+            --enable-mbstring \
+            --enable-maintainer-zts \
+            --with-xsl \
+            --with-curl \
+            --with-zlib \
+            --with-mhash \
+            --with-openssl \
             --with-mysql=mysqlnd \
             --with-mysqli=mysqlnd \
             --with-pdo-mysql=mysqlnd \
-            --enable-calendar \
-            --enable-mbstring \
-            --enable-intl \
             --with-gd \
             --enable-gd-native-ttf \
             --enable-gd-jis-conv \
+            --with-freetype-dir \
             --with-jpeg-dir \
             --with-png-dir \
-#            --with-freetype-dir \
-#            --enable-exif \
+            --with-vpx-dir \
+            --with-xmp-dir \
             --with-layout=GNU \
             --with-regex=php \
-            --enable-maintainer-zts \
-            --with-zend-vm=CALL
+            --with-zend-vm=CALL \
+          || exit 6
 
 # install
-make install
-
-# copy ini file
-cp $SCRIPT_DIR_ETC/php/php.ini $PHP_INI_DIR/
-
-# copy fpm configuration file
-cp $SCRIPT_DIR_ETC/php/php-fpm.conf $PHP_INI_DIR/
+$MAKE_COMMAND install || exit 7
 
