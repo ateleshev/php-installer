@@ -15,7 +15,7 @@ case "$OS" in
                                     libjpeg8-dev libpng++-dev \
                                     libmemcached-dev libgearman-dev \
                                     libvpx-dev libvpx-doc libvpx1 \
-                                    libxpm-dev xpmutils libxpm4
+                                    libxpm-dev xpmutils libxpm4 autoconf
     fi
   ;;
 esac

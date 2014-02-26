@@ -127,7 +127,7 @@ function install_php_pecl_extension() { # {{{
   cd $DIR_SRC && echo "Change current directory to '$DIR_SRC'" || exit 1
 
   echo "Try to downloaded: '$EXTENSION_DOWNLOAD_NAME'"
-  $PECL download $EXTENSION_DOWNLOAD_NAME || exit 2
+  $PECL download $EXTENSION_FULL_NAME || exit 2
 
   if [ -f $DIR_SRC/channel.xml ] ; then
     rm $DIR_SRC/channel.xml
