@@ -1,46 +1,78 @@
 #!/usr/bin/env bash
 
-NAME=$(basename $0)
-SCRIPT=$(realpath $0)
-SCRIPT_DIR=$(dirname $SCRIPT)
-. $SCRIPT_DIR/environment
-
-show_installed() {
+show_installed_extensions() {
   echo "List of installed extensions for PHP $PHP_VERSION:"
   find $EXTENSION_DIR -iname '*.so' -type f
   echo "List of enabled extensions for PHP $PHP_VERSION:"
   cat $EXTENSION_INI_DIR/*
 }
 
-install_raphf() {
-  $SCRIPT_DIR/install-raphf
+install_extension_raphf() { # {{{
+  install_php_pecl_extension "raphf" "1.0.4"
+} # }}}
+
+install_extension_propro() { # {{{
+  install_php_pecl_extension "propro" "1.0.0"
+} # }}}
+
+install_extension_http() { # {{{
+  install_php_pecl_extension "http" "1.7.6" "extension" "pecl_http"
+} # }}}
+
+install_extension_pcntl() {
+  . $SCRIPT_DIR/install-pcntl
 }
 
-install_propro() {
-  $SCRIPT_DIR/install-propro
-}
+install_extension_memcached() { # {{{
+  install_php_pecl_extension "memcached" "2.1.0"
+} # }}}
 
-install_http() {
-  $SCRIPT_DIR/install-http
-}
+install_extension_gearman() { # {{{
+  install_php_pecl_extension "gearman" "1.1.2"
+} # }}}
 
-install_pcntl() {
-  $SCRIPT_DIR/install-pcntl
-}
+install_extension_xdebug() { # {{{
+  install_php_pecl_extension "xdebug" "2.2.3" "zend_extension"
 
-install_memcached() {
-  $SCRIPT_DIR/install-memcached
-}
+#  +----------------------------------------------------------------------+
+#  |   /etc/php5/conf.d/xdebug.ini                                        |
+#  |   ===========================                                        |
+#  |                                                                      |
+#  |   ; point this to wherever your xdebug.so is located                 |
+#  |   zend_extension=/usr/lib/php5/20090626/xdebug.so                    |
+#  |   xdebug.remote_enable=1                                             |
+#  |   xdebug.remote_host=localhost                                       |
+#  |   xdebug.remote_port=9000                                            |
+#  |                                                                      |
+#  |   xdebug.remote_autostart=1                                          |
+#  +----------------------------------------------------------------------+
 
-install_gearman() {
-  $SCRIPT_DIR/install-gearman
-}
 
-install_xdebug() {
-  $SCRIPT_DIR/install-xdebug
-}
+#  +----------------------------------------------------------------------+
+#  |                                                                      |
+#  |   INSTALLATION INSTRUCTIONS                                          |
+#  |   =========================                                          |
+#  |                                                                      |
+#  |   See http://xdebug.org/install.php#configure-php for instructions   |
+#  |   on how to enable Xdebug for PHP.                                   |
+#  |                                                                      |
+#  |   Documentation is available online as well:                         |
+#  |   - A list of all settings:  http://xdebug.org/docs-settings.php     |
+#  |   - A list of all functions: http://xdebug.org/docs-functions.php    |
+#  |   - Profiling instructions:  http://xdebug.org/docs-profiling2.php   |
+#  |   - Remote debugging:        http://xdebug.org/docs-debugger.php     |
+#  |                                                                      |
+#  |                                                                      |
+#  |   NOTE: Please disregard the message                                 |
+#  |       You should add "extension=xdebug.so" to php.ini                |
+#  |   that is emitted by the PECL installer. This does not work for      |
+#  |   Xdebug.                                                            |
+#  |                                                                      |
+#  +----------------------------------------------------------------------+
 
-show_help() {
+} # }}}
+
+show_help() { # {{{
   echo "------------------------------------------------"
   echo " Script for easy installation of PHP extension. "
   echo "------------------------------------------------"
@@ -56,37 +88,37 @@ show_help() {
   echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
   echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
   echo "  help       - show this message"
-}
+} # }}}
 
-case "$1" in
+case "$SCRIPT_SUB_ACTION" in
   list)
-    show_installed
-  ;;
-  raphf)
-    install_raphf
-  ;;
-  propro)
-    install_propro
+    show_installed_extensions
   ;;
   http)
-    install_http
+    install_extension_http
   ;;
   pcntl)
-    install_pcntl
+    install_extension_pcntl
   ;;
   memcached)
-    install_memcached
+    install_extension_memcached
   ;;
   gearman)
-    install_gearman
+    install_extension_gearman
   ;;
   xdebug)
-    install_xdebug
+    install_extension_xdebug
+  ;;
+  raphf)
+    install_extension_raphf
+  ;;
+  propro)
+    install_extension_propro
   ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|raphf|propro|http|pcntl|memcached|gearman|xdebug|help}"
+    echo "Usage: $NAME {list|http|pcntl|memcached|gearman|xdebug|raphf|propro|help}"
   ;;
 esac

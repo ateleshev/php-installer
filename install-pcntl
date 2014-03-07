@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-NAME=$(basename $0)
-SCRIPT=$(realpath $0)
-SCRIPT_DIR=$(dirname $SCRIPT)
-cd $SCRIPT_DIR || exit 1 && echo "Change current directory to '$SCRIPT_DIR'"
-
-. $SCRIPT_DIR/environment
-
 PHP_PCNTL_DIR=$PHP_DIR/ext/pcntl/
 EXTENSION_NAME=pcntl
 EXTENSION_TYPE=extension
@@ -14,7 +7,7 @@ EXTENSION_TYPE=extension
 EXTENSION_SO=$EXTENSION_NAME.so
 EXTENSION_PATH_TO_SO=$EXTENSION_DIR/$EXTENSION_SO
 
-EXTENSION_PRIORITY=$($LS_COMMAND -l $EXTENSION_INI_DIR/ | $GREP_COMMAND ini | $WC_COMMAND -l | $AWK_COMMAND '{ printf "%03d", $0 + 1 }')
+EXTENSION_PRIORITY=$(ls -l $EXTENSION_INI_DIR/ | grep ini | wc -l | awk '{ printf "%03d", $0 + 1 }')
 
 EXTENSION_INI=$EXTENSION_PRIORITY-$EXTENSION_NAME.ini
 EXTENSION_PATH_TO_INI=$EXTENSION_INI_DIR/$EXTENSION_INI
@@ -29,7 +22,7 @@ $PHPIZE || exit 3
 ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-$EXTENSION_NAME --enable-shared=PKGS --with-php-config=$PHPCONFIG || exit 4
 
 # install
-$MAKE_COMMAND install || exit 5
+make install || exit 5
 
-echo "$EXTENSION_TYPE=$EXTENSION_NAME.so" > $EXTENSION_PATH_TO_INI || exit 6 && echo "Save '$EXTENSION_TYPE=$EXTENSION_NAME.so' to '$EXTENSION_PATH_TO_INI'"
+echo "$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO" > $EXTENSION_PATH_TO_INI || exit 10 && echo "Save '$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO' to '$EXTENSION_PATH_TO_INI'"
 

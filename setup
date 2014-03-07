@@ -1,22 +1,13 @@
 #!/usr/bin/env bash
 
-NAME=$(basename $0)
-SCRIPT=$(realpath $0)
-SCRIPT_DIR=$(dirname $SCRIPT)
-. $SCRIPT_DIR/environment
-
-case "$OS" in
-  'Linux' | 'GNU/Linux')
-    if [ -f $APT_GET_COMMAND ] ; then
-      sudo $APT_GET_COMMAND install wget tar unzip gzip bzip2 realpath \
-                                    re2c g++ pkg-config curl \
-                                    libcurl4-gnutls-dev libssl-dev libxml2-dev libxslt1-dev \
-                                    libfreetype6-dev libghc-text-icu-dev libicu-dev \
-                                    libjpeg8-dev libpng++-dev \
-                                    libmemcached-dev libgearman-dev \
-                                    libvpx-dev libvpx-doc libvpx1 \
-                                    libxpm-dev xpmutils libxpm4 autoconf
-    fi
-  ;;
-esac
+if [ -x $APT_GET ] ; then
+  $EXECUTE_FROM_ROOT apt-get install wget tar unzip gzip bzip2 realpath \
+                                     re2c g++ pkg-config curl \
+                                     libcurl4-gnutls-dev libssl-dev libxml2-dev libxslt1-dev \
+                                     libfreetype6-dev libghc-text-icu-dev libicu-dev \
+                                     libjpeg8-dev libpng++-dev \
+                                     libmemcached-dev libgearman-dev \
+                                     libvpx-dev libvpx-doc libvpx1 \
+                                     libxpm-dev xpmutils libxpm4 autoconf
+fi
 

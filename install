@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
 
-NAME=$(basename $0)
-SCRIPT=$(realpath $0)
-SCRIPT_DIR=$(dirname $SCRIPT)
-. $SCRIPT_DIR/environment
-
 if [ ! -d $DIR_SRC ] ; then
-  $MKDIR_COMMAND -p $DIR_SRC || exit 1
+  mkdir -p $DIR_SRC || exit 1
 fi
 
 cd $DIR_SRC || exit 2
 if [ ! -f $DIR_SRC/$PHP_ARCHIVE_NAME ] ; then
-  $WGET_COMMAND $DOWNLOAD_URL || exit 3
+  wget $DOWNLOAD_URL || exit 3
 fi
 
 if [ ! -d $PHP_DIR ] ; then
-  $TAR_COMMAND -xvf $PHP_ARCHIVE_NAME || exit 4
+  tar -xvf $PHP_ARCHIVE_NAME || exit 4
 fi
 
 cd $PHP_DIR || exit 5
@@ -58,5 +53,5 @@ cd $PHP_DIR || exit 5
           || exit 6
 
 # install
-$MAKE_COMMAND install || exit 7
+make install || exit 7
 

@@ -4,23 +4,7 @@ NAME=$(basename $0)
 SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
 
-LS_COMMAND=$(which ls)
-CP_COMMAND=$(which cp)
-PS_COMMAND=$(which ps)
-TR_COMMAND=$(which tr)
-WC_COMMAND=$(which wc)
-CAT_COMMAND=$(which cat)
-AWK_COMMAND=$(which awk)
-SED_COMMAND=$(which sed)
-TAR_COMMAND=$(which tar)
-GREP_COMMAND=$(which grep)
-WGET_COMMAND=$(which wget)
-MAKE_COMMAND=$(which make)
-UNAME_COMMAND=$(which uname)
-MKDIR_COMMAND=$(which mkdir)
-APT_GET_COMMAND=$(which apt-get)
-
-OS=$($UNAME_COMMAND -o)
+OS=$(uname -o)
 AUTHOR="Artem Teleshev <artem.teleshev@gmail.com>"
 VERSION="1.0"
 
@@ -30,7 +14,7 @@ DOMAIN_FILE=$SCRIPT_DIR_ETC/domain
 INSTALLATION_DIR=/usr/local/lib
 
 PHP_NAME=php
-PHP_VERSION=$($CAT_COMMAND $VERSION_FILE)
+PHP_VERSION=$(cat $VERSION_FILE)
 PHP_FULL_NAME=$PHP_NAME-$PHP_VERSION
 # If you wont to use PHP snaps:
 # PHP_FULL_NAME=$PHP_NAME$PHP_VERSION
@@ -42,7 +26,7 @@ PHP_DIR=$DIR_SRC/$PHP_FULL_NAME
 PHP_ARCHIVE_TYPE=tar.bz2
 PHP_ARCHIVE_NAME=$PHP_FULL_NAME.$PHP_ARCHIVE_TYPE
 
-DOWNLOAD_HOST=$($CAT_COMMAND $DOMAIN_FILE)
+DOWNLOAD_HOST=$(cat $DOMAIN_FILE)
 DOWNLOAD_URL="http://$DOWNLOAD_HOST/distributions/$PHP_ARCHIVE_NAME"
 # If you wont to use PHP snaps:
 # DOWNLOAD_URL="http://snaps.php.net/php5.4-201312170830.tar.bz2"
@@ -117,7 +101,7 @@ function install_php_pecl_extension() { # {{{
   EXTENSION_SO=$EXTENSION_NAME.so
   EXTENSION_PATH_TO_SO=$EXTENSION_DIR/$EXTENSION_SO
 
-  EXTENSION_PRIORITY=$($LS_COMMAND -l $EXTENSION_INI_DIR/ | $GREP_COMMAND ini | $WC_COMMAND -l | $AWK_COMMAND '{ printf "%03d", $0 + 1 }')
+  EXTENSION_PRIORITY=$(ls -l $EXTENSION_INI_DIR/ | grep ini | wc -l | awk '{ printf "%03d", $0 + 1 }')
 
   EXTENSION_INI=$EXTENSION_PRIORITY-$EXTENSION_NAME.ini
   EXTENSION_PATH_TO_INI=$EXTENSION_INI_DIR/$EXTENSION_INI
@@ -156,7 +140,7 @@ function install_php_pecl_extension() { # {{{
   ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-$EXTENSION_NAME --enable-shared=PKGS --with-php-config=$PHPCONFIG || exit 8
 
   # install
-  $MAKE_COMMAND install || exit 9 
+  make install || exit 9 
 
   echo "$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO" > $EXTENSION_PATH_TO_INI || exit 10 && echo "Save '$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO' to '$EXTENSION_PATH_TO_INI'"
 } # }}}
