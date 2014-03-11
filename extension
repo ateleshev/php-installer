@@ -8,31 +8,31 @@ show_installed_extensions() {
 }
 
 install_extension_raphf() { # {{{
-  install_php_pecl_extension "raphf" "1.0.4"
+  install_php_pecl_extension raphf
 } # }}}
 
 install_extension_propro() { # {{{
-  install_php_pecl_extension "propro" "1.0.0"
+  install_php_pecl_extension propro
 } # }}}
 
 install_extension_http() { # {{{
-  install_php_pecl_extension "http" "1.7.6" "extension" "pecl_http"
+  install_php_pecl_extension http
 } # }}}
 
-install_extension_pcntl() {
-  . $SCRIPT_DIR/install-pcntl
-}
+install_extension_pcntl() { # {{{
+  install_php_source_extension pcntl
+} # }}}
 
 install_extension_memcached() { # {{{
-  install_php_pecl_extension "memcached" "2.1.0"
+  install_php_pecl_extension memcached
 } # }}}
 
 install_extension_gearman() { # {{{
-  install_php_pecl_extension "gearman" "1.1.2"
+  install_php_pecl_extension gearman
 } # }}}
 
 install_extension_xdebug() { # {{{
-  install_php_pecl_extension "xdebug" "2.2.3" "zend_extension"
+  install_php_pecl_extension xdebug
 
 #  +----------------------------------------------------------------------+
 #  |   /etc/php5/conf.d/xdebug.ini                                        |

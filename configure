@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 # copy ini file
-#cp $SCRIPT_DIR_ETC/php/php.ini $PHP_INI_DIR/
+echo -n "Trying to update php.ini in '$PHP_INI_DIR' ... "
+cp $SCRIPT_DIR_ETC/php/php.ini $PHP_INI_DIR/ || echo "[ Error ]" && echo "[ OK ]"
 
 # copy fpm configuration file
-#cp $SCRIPT_DIR_ETC/php/php-fpm.conf $PHP_INI_DIR/
+echo -n "Trying to update php-fpm.conf in '$PHP_INI_DIR' ... "
+cp $SCRIPT_DIR_ETC/php/php-fpm.conf $PHP_INI_DIR/ || echo "[ Error ]" && echo "[ OK ]"
 
