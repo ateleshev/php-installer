@@ -234,11 +234,11 @@ function create_symlink_to() { # {{{
       if [ "$(pwd)" = "$SYMLINK_TO" ] ; then
         if [ -L $SYMLINK_NAME ] || [ -e $SYMLINK_NAME ] ; then
           echo -n " Trying to delete '$SYMLINK_NAME' ... "
-          sudo rm $SYMLINK_NAME || echo "[ Error ]" && echo "[ OK ]"
+          $EXECUTE_FROM_ROOT rm $SYMLINK_NAME || echo "[ Error ]" && echo "[ OK ]"
         fi
 
         echo -n " Trying to create symlink to: '$SYMLINK' ... "
-        sudo ln -s $SYMLINK || echo "[ Error ]" && echo "[ OK ]"
+        $EXECUTE_FROM_ROOT ln -s $SYMLINK || echo "[ Error ]" && echo "[ OK ]"
       else
         echo  " [ Error ] Can't change current directory to: '$SYMLINK_TO'"
       fi
