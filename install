@@ -46,11 +46,11 @@ cd $PHP_DIR || exit 5
             --with-jpeg-dir \
             --with-png-dir \
             --with-vpx-dir \
-#            --with-xmp-dir \
             --with-layout=GNU \
             --with-regex=php \
             --with-zend-vm=CALL \
           || exit 6
+#            --with-xmp-dir \
 
 # install
 make install || exit 7
