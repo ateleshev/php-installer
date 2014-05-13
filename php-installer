@@ -5,7 +5,7 @@ SUDO=$(which sudo)
 APT_GET=$(which apt-get)
 
 # Execute from root {{{
-if [ "$USER" = "root" ] ; then
+if [ `id -u` -eq 0 ] ; then
   EXECUTE_FROM_ROOT=""
 elif [ -x "$SUDO" ] ; then
   EXECUTE_FROM_ROOT="sudo"
