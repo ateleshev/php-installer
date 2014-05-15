@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 if [ -d $DIR ] ; then
-  echo -n "Did you really want to delete PHP $PHP_VERSION from your $OS system? (yes/[no]): "
+  echo -n "Did you really want to delete PHP ${PHP_VERSION} from your ${OS} system? (yes/[no]): "
   while read INPUTTED_CONFIRMATION
   do
-    if [ "$INPUTTED_CONFIRMATION" = "yes" ] ; then
-      echo -n "Started to delete PHP $PHP_VERSION from your $OS system ... "
-      rm -rf $DIR || echo "[ Error ]" && echo "[ OK ]" && echo > $VERSION_FILE
+    if [ "${INPUTTED_CONFIRMATION}" = "yes" ] ; then
+      echo -n "Started to delete PHP ${PHP_VERSION} from your ${OS} system ... "
+      rm -rf $DIR || echo "[ Error ]" && echo "[ OK ]"
     else
-      echo "Cancel deletion of PHP $PHP_VERSION from your $OS system ... [ OK ]"
+      echo "Cancel deletion of PHP ${PHP_VERSION} from your ${OS} system ... [ OK ]"
     fi
     break
   done
 else
-  echo "The PHP $PHP_VERSION doesn't installed."
+  echo "The PHP ${PHP_VERSION} doesn't installed."
 fi
 

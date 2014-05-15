@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+validate_version ${PHP_VERSION}
+
 if [ ! -d $DIR_SRC ] ; then
   mkdir -p $DIR_SRC || exit 1
 fi

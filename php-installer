@@ -58,55 +58,51 @@ SCRIPT_SUB_ACTION=$2
 
 . $SCRIPT_DIR/environment
 
-show_installed() { # {{{
+function show_installed() { # {{{
   echo "List of installed PHP versions:"
   find $INSTALLATION_DIR/* -iname "$PHP_NAME*" -type d -prune
 } # }}}
 
-show_version() { # {{{
+function show_version() { # {{{
   echo "PHP Version: $PHP_VERSION"
 } # }}}
 
-change_version() { # {{{
+function change_version() { # {{{
   echo -n "Enter PHP version [$PHP_VERSION]: "
   while read INPUTTED_VERSION
   do
-    if [[ "$INPUTTED_VERSION" =~ ^[0-9]+(\.[0-9]+){1,2}$ ]] ; then 
-      echo -n "Change PHP version to $INPUTTED_VERSION ... "
-      echo $INPUTTED_VERSION > $VERSION_FILE || echo "[ Error ]" && echo "[ OK ]"
-      break
-    else
-      echo "Incorrect format '$INPUTTED_VERSION' (correct example: 5.4.25)"
-      exit 1
-    fi
+    validate_version $INPUTTED_VERSION
+    echo -n "Change PHP version to $INPUTTED_VERSION ... "
+    echo $INPUTTED_VERSION > $VERSION_FILE || echo "[ Error ]" && echo "[ OK ]"
+    break
   done
 } # }}}
 
-update_php() { # {{{
+function update_php() { # {{{
   . $SCRIPT_DIR/update
 } # }}}
 
-configure_php() { # {{{
+function configure_php() { # {{{
   . $SCRIPT_DIR/configure
 } # }}}
 
-install_php() { # {{{
+function install_php() { # {{{
   . $SCRIPT_DIR/install
 } # }}}
 
-install_extension() { # {{{
+function install_extension() { # {{{
   . $SCRIPT_DIR/extension
 } # }}}
 
-delete_php() { # {{{
+function delete_php() { # {{{
   . $SCRIPT_DIR/delete
 } # }}}
 
-setup_php() { # {{{
+function setup_php() { # {{{
   . $SCRIPT_DIR/setup
 } # }}}
 
-show_help() { # {{{
+function show_help() { # {{{
   echo "-------------------------------------------------------"
   echo " Script for easy installation more one version of PHP. "
   echo "-------------------------------------------------------"

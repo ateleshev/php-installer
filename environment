@@ -48,6 +48,13 @@ if [ -x "$PEAR" ]; then
   PEAR_DOWNLOAD_DIR=$($PEAR config-get download_dir)
 fi
 
+function validate_version() { # {{{
+  if [[ ! "$1" =~ ^[0-9]+(\.[0-9]+){1,2}$ ]] ; then 
+    echo "Incorrect PHP version: '$1' (correct example: 5.4.28)"
+    exit 1
+  fi
+} # }}}
+
 # Extensions {{{
 declare -A EXTENSIONS
 
