@@ -95,7 +95,7 @@ EXTENSIONS["memcached:url"]="http://pecl.php.net/package/memcached"
 EXTENSIONS["memcached:name"]=memcached
 EXTENSIONS["memcached:type"]=extension
 EXTENSIONS["memcached:summary"]="Interfacing with memcached via libmemcached library"
-EXTENSIONS["memcached:version"]="2.1.0"
+EXTENSIONS["memcached:version"]="2.2.0"
 EXTENSIONS["memcached:priority"]=4010
 
 # 5***
