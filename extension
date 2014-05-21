@@ -7,6 +7,18 @@ show_installed_extensions() {
   cat $EXTENSION_INI_DIR/*
 }
 
+install_extension_pcntl() { # {{{
+  install_php_source_extension pcntl
+} # }}}
+
+install_extension_pthreads() { # {{{
+  install_php_pecl_extension pthreads
+} # }}}
+
+install_extension_fileinfo() { # {{{
+  install_php_source_extension fileinfo
+} # }}}
+
 install_extension_raphf() { # {{{
   install_php_pecl_extension raphf
 } # }}}
@@ -17,10 +29,6 @@ install_extension_propro() { # {{{
 
 install_extension_http() { # {{{
   install_php_pecl_extension http
-} # }}}
-
-install_extension_pcntl() { # {{{
-  install_php_source_extension pcntl
 } # }}}
 
 install_extension_memcached() { # {{{
@@ -94,11 +102,17 @@ case "$SCRIPT_SUB_ACTION" in
   list)
     show_installed_extensions
   ;;
-  http)
-    install_extension_http
-  ;;
   pcntl)
     install_extension_pcntl
+  ;;
+  pthreads)
+    install_extension_pthreads
+  ;;
+  fileinfo)
+    install_extension_fileinfo
+  ;;
+  http)
+    install_extension_http
   ;;
   memcached)
     install_extension_memcached
@@ -119,6 +133,6 @@ case "$SCRIPT_SUB_ACTION" in
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|http|pcntl|memcached|gearman|xdebug|raphf|propro|help}"
+    echo "Usage: $NAME {list|pcntl|pthreads|fileinfo|http|memcached|gearman|xdebug|raphf|propro|help}"
   ;;
 esac

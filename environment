@@ -63,9 +63,19 @@ EXTENSIONS["pcntl:url"]="http://php.net/manual/ru/book.pcntl.php"
 EXTENSIONS["pcntl:name"]=pcntl
 EXTENSIONS["pcntl:type"]=extension
 EXTENSIONS["pcntl:source"]=$PHP_DIR/ext/pcntl
-EXTENSIONS["pcntl:summary"]="Process Control"
+EXTENSIONS["pcntl:configure"]=" --enable-pcntl"
+EXTENSIONS["pcntl:summary"]="Process control"
 EXTENSIONS["pcntl:version"]=$PHP_VERSION
 EXTENSIONS["pcntl:priority"]=1000
+
+EXTENSIONS["fileinfo:url"]="http://php.net/manual/ru/ref.fileinfo.php"
+EXTENSIONS["fileinfo:name"]=fileinfo
+EXTENSIONS["fileinfo:type"]=extension
+EXTENSIONS["fileinfo:source"]=$PHP_DIR/ext/fileinfo
+EXTENSIONS["fileinfo:configure"]=""
+EXTENSIONS["fileinfo:summary"]="File info"
+EXTENSIONS["fileinfo:version"]=$PHP_VERSION
+EXTENSIONS["fileinfo:priority"]=1010
 
 # 2***
 EXTENSIONS["raphf:url"]="http://pecl.php.net/package/raphf"
@@ -89,6 +99,13 @@ EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
 EXTENSIONS["http:version"]="1.7.6"
 EXTENSIONS["http:priority"]=3000
+
+EXTENSIONS["pthreads:url"]="http://pecl.php.net/package/pthreads"
+EXTENSIONS["pthreads:name"]=pthreads
+EXTENSIONS["pthreads:type"]=extension
+EXTENSIONS["pthreads:summary"]="Threading API"
+EXTENSIONS["pthreads:version"]="2.0.7"
+EXTENSIONS["pthreads:priority"]=3010
 
 # 4***
 EXTENSIONS["gearman:url"]="http://pecl.php.net/package/gearman"
@@ -127,6 +144,12 @@ function prepare_php_extension() { # {{{
     EXTENSION_SOURCE=$DIR_SRC/$EXTENSION_FULL_NAME
   else
     EXTENSION_SOURCE=${EXTENSIONS["$EXTENSION:source"]}
+  fi
+  
+  if [ ! ${EXTENSIONS["$EXTENSION:configure"]} ] ; then
+    EXTENSION_CONGIFURE=""
+  else
+    EXTENSION_CONGIFURE=${EXTENSIONS["$EXTENSION:configure"]}
   fi
 
   EXTENSION_SO=$EXTENSION.so
@@ -175,7 +198,7 @@ function install_php_extension() { # {{{
   $PHPIZE || exit 1
 
   # configure
-  ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-$EXTENSION --enable-shared=PKGS --with-php-config=$PHPCONFIG || exit 1
+  ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-shared=PKGS --with-php-config=$PHPCONFIG $EXTENSION_CONGIFURE || exit 1
 
   # install
   make install || exit 1
