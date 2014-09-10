@@ -15,10 +15,6 @@ install_extension_pthreads() { # {{{
   install_php_pecl_extension pthreads
 } # }}}
 
-install_extension_fileinfo() { # {{{
-  install_php_source_extension fileinfo
-} # }}}
-
 install_extension_raphf() { # {{{
   install_php_pecl_extension raphf
 } # }}}
@@ -134,13 +130,10 @@ case "$SCRIPT_SUB_ACTION" in
   propro)
     install_extension_propro
   ;;
-  fileinfo)
-    install_extension_fileinfo
-  ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|xdebug|raphf|propro|fileinfo|help}"
+    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|xdebug|raphf|propro|help}"
   ;;
 esac

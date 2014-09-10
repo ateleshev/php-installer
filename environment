@@ -68,15 +68,6 @@ EXTENSIONS["pcntl:summary"]="Process control"
 EXTENSIONS["pcntl:version"]=$PHP_VERSION
 EXTENSIONS["pcntl:priority"]=1000
 
-EXTENSIONS["fileinfo:url"]="http://php.net/manual/ru/ref.fileinfo.php"
-EXTENSIONS["fileinfo:name"]=fileinfo
-EXTENSIONS["fileinfo:type"]=extension
-EXTENSIONS["fileinfo:source"]=$PHP_DIR/ext/fileinfo
-EXTENSIONS["fileinfo:configure"]=""
-EXTENSIONS["fileinfo:summary"]="File info"
-EXTENSIONS["fileinfo:version"]=$PHP_VERSION
-EXTENSIONS["fileinfo:priority"]=1010
-
 # 2***
 EXTENSIONS["raphf:url"]="http://pecl.php.net/package/raphf"
 EXTENSIONS["raphf:name"]=raphf
@@ -134,7 +125,7 @@ EXTENSIONS["xdebug:url"]="http://pecl.php.net/package/xdebug"
 EXTENSIONS["xdebug:name"]=xdebug
 EXTENSIONS["xdebug:type"]=zend_extension
 EXTENSIONS["xdebug:summary"]="Provides functions for function traces and profiling"
-EXTENSIONS["xdebug:version"]="2.2.4"
+EXTENSIONS["xdebug:version"]="2.2.5"
 EXTENSIONS["xdebug:priority"]=5000
 # }}}
 
