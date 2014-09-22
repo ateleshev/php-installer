@@ -8,6 +8,7 @@ if [ -x $APT_GET ] ; then
                                      libjpeg8-dev libpng++-dev \
                                      libmemcached-dev libgearman-dev \
                                      libvpx-dev libvpx-doc libvpx1 \
-                                     libxpm-dev xpmutils libxpm4 autoconf
+                                     libxpm-dev xpmutils libxpm4 autoconf \
+                                     libcouchbase2-libevent libcouchbase-dev
 fi
 
