@@ -88,14 +88,14 @@ EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
-EXTENSIONS["http:version"]="2.1.1"
+EXTENSIONS["http:version"]="2.1.2"
 EXTENSIONS["http:priority"]=3000
 
 EXTENSIONS["pthreads:url"]="http://pecl.php.net/package/pthreads"
 EXTENSIONS["pthreads:name"]=pthreads
 EXTENSIONS["pthreads:type"]=extension
 EXTENSIONS["pthreads:summary"]="Threading API"
-EXTENSIONS["pthreads:version"]="2.0.8"
+EXTENSIONS["pthreads:version"]="2.0.10"
 EXTENSIONS["pthreads:priority"]=3010
 
 # 4***
