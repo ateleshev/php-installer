@@ -109,6 +109,7 @@ EXTENSIONS["gearman:priority"]=4000
 EXTENSIONS["memcached:url"]="http://pecl.php.net/package/memcached"
 EXTENSIONS["memcached:name"]=memcached
 EXTENSIONS["memcached:type"]=extension
+EXTENSIONS["memcached:configure"]=" --disable-memcached-sasl"
 EXTENSIONS["memcached:summary"]="Interfacing with memcached via libmemcached library"
 EXTENSIONS["memcached:version"]="2.2.0"
 EXTENSIONS["memcached:priority"]=4010
