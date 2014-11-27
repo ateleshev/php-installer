@@ -35,6 +35,10 @@ install_extension_memcached() { # {{{
   install_php_pecl_extension memcached
 } # }}}
 
+install_extension_imagick() { # {{{
+  install_php_pecl_extension imagick
+} # }}}
+
 install_extension_couchbase() { # {{{
   install_php_pecl_extension couchbase
 } # }}}
@@ -96,6 +100,7 @@ show_help() { # {{{
   echo "  couchbase  - installation of couchbase extension (http://www.couchbase.com/communities/php/getting-started), Detail: http://www.couchbase.com/communities/c-client-library"
   echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
   echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
+  echo "  imagick    - installation of imagick extension (http://pecl.php.net/package/imagick)"
   echo "  help       - show this message"
 } # }}}
 
@@ -130,10 +135,13 @@ case "$SCRIPT_SUB_ACTION" in
   propro)
     install_extension_propro
   ;;
+  imagick)
+    install_extension_imagick
+  ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|xdebug|raphf|propro|help}"
+    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|xdebug|raphf|propro|imagick|help}"
   ;;
 esac
