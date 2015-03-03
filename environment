@@ -88,7 +88,7 @@ EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
-EXTENSIONS["http:version"]="2.1.2"
+EXTENSIONS["http:version"]="2.3.1"
 EXTENSIONS["http:priority"]=3000
 
 EXTENSIONS["pthreads:url"]="http://pecl.php.net/package/pthreads"
