@@ -88,7 +88,8 @@ EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
-EXTENSIONS["http:version"]="2.3.1"
+#EXTENSIONS["http:version"]="2.4.1"
+EXTENSIONS["http:version"]="1.7.6"
 EXTENSIONS["http:priority"]=3000
 
 EXTENSIONS["pthreads:url"]="http://pecl.php.net/package/pthreads"
@@ -133,7 +134,7 @@ EXTENSIONS["xdebug:url"]="http://pecl.php.net/package/xdebug"
 EXTENSIONS["xdebug:name"]=xdebug
 EXTENSIONS["xdebug:type"]=zend_extension
 EXTENSIONS["xdebug:summary"]="Provides functions for function traces and profiling"
-EXTENSIONS["xdebug:version"]="2.2.5"
+EXTENSIONS["xdebug:version"]="2.3.2"
 EXTENSIONS["xdebug:priority"]=5000
 # }}}
 
