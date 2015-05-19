@@ -21,36 +21,37 @@ cd $PHP_DIR || exit 5
             --exec-prefix=$EPREFIX \
             --with-config-file-scan-dir=$EXTENSION_INI_DIR \
             --disable-ipv6 \
-            --enable-zip \
             --enable-ftp \
             --enable-fpm \
+            --enable-zip \
             --enable-intl \
-            --enable-exif \
             --enable-soap \
+            --enable-exif \
             --enable-shmop \
             --enable-libxml \
             --enable-sockets \
             --enable-calendar \
             --enable-mbstring \
+            --enable-gd-jis-conv \
+            --enable-gd-native-ttf \
             --enable-maintainer-zts \
+            --with-gd \
             --with-xsl \
             --with-curl \
             --with-zlib \
             --with-mhash \
+            --with-png-dir \
+            --with-vpx-dir \
             --with-openssl \
+            --with-readline \
+            --with-jpeg-dir \
+            --with-freetype-dir \
+            --with-regex=php \
+            --with-layout=GNU \
+            --with-zend-vm=CALL \
             --with-mysql=mysqlnd \
             --with-mysqli=mysqlnd \
             --with-pdo-mysql=mysqlnd \
-            --with-gd \
-            --enable-gd-native-ttf \
-            --enable-gd-jis-conv \
-            --with-freetype-dir \
-            --with-jpeg-dir \
-            --with-png-dir \
-            --with-vpx-dir \
-            --with-layout=GNU \
-            --with-regex=php \
-            --with-zend-vm=CALL \
           || exit 6
 #            --with-xmp-dir \
 

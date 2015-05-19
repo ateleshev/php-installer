@@ -88,8 +88,8 @@ EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
-#EXTENSIONS["http:version"]="2.4.1"
-EXTENSIONS["http:version"]="1.7.6"
+EXTENSIONS["http:version"]="2.4.3"
+#EXTENSIONS["http:version"]="1.7.6"
 EXTENSIONS["http:priority"]=3000
 
 EXTENSIONS["pthreads:url"]="http://pecl.php.net/package/pthreads"
@@ -119,7 +119,7 @@ EXTENSIONS["couchbase:url"]="http://pecl.php.net/package/couchbase"
 EXTENSIONS["couchbase:name"]=couchbase
 EXTENSIONS["couchbase:type"]=extension
 EXTENSIONS["couchbase:summary"]="Couchbase Server PHP extension"
-EXTENSIONS["couchbase:version"]="1.2.2"
+EXTENSIONS["couchbase:version"]="2.0.7"
 EXTENSIONS["couchbase:priority"]=4020
 
 EXTENSIONS["imagick:url"]="http://pecl.php.net/package/imagick"
