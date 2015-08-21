@@ -85,23 +85,46 @@ install_extension_xdebug() { # {{{
 } # }}}
 
 show_help() { # {{{
-  echo "------------------------------------------------"
-  echo " Script for easy installation of PHP extension. "
-  echo "------------------------------------------------"
-  echo "Author:   $AUTHOR"
-  echo "Version:  $VERSION"
-  echo ""
-  echo "Commands:"
-  echo "  list       - list of instaled PHP extension"
-  echo "  raphf      - installation of raphf extension (http://pecl.php.net/package/raphf)"
-  echo "  propro     - installation of propro extension (http://pecl.php.net/package/propro)"
-  echo "  http       - installation of pecl_http extension (http://www.php.net/manual/en/book.http.php)"
-  echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
-  echo "  couchbase  - installation of couchbase extension (http://www.couchbase.com/communities/php/getting-started), Detail: http://www.couchbase.com/communities/c-client-library"
-  echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
-  echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
-  echo "  imagick    - installation of imagick extension (http://pecl.php.net/package/imagick)"
-  echo "  help       - show this message"
+  if [ -x "$(which display-im6)" ] && [ ${SCRIPT_OPTIONS["imagick"]} == true ]; then
+    IMAGE_MAGICK_INFO=$(display-im6 -version | grep Version)
+
+    IMAGE_MAGICK_NAME=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $2'})
+    IMAGE_MAGICK_VERSION=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $3'} | sed '/\-/s/\-.*//g')
+    IMAGE_MAGICK_BIN_PREFIX=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $4'})
+    IMAGE_MAGICK_ARCHITECTURE=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $5'})
+
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo " ${IMAGE_MAGICK_NAME} (${IMAGE_MAGICK_VERSION}):"
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo "  sudo apt-get install imagemagick imagemagick-common libmagickwand-dev imagemagick-doc"
+    echo "  cd /usr/bin"
+    echo "  sudo ln -s /usr/lib/${IMAGE_MAGICK_ARCHITECTURE}-linux-gnu/${IMAGE_MAGICK_NAME}-${IMAGE_MAGICK_VERSION}/bin-${IMAGE_MAGICK_BIN_PREFIX}/Wand-config"
+    echo "  sudo ln -s /usr/lib/${IMAGE_MAGICK_ARCHITECTURE}-linux-gnu/${IMAGE_MAGICK_NAME}-${IMAGE_MAGICK_VERSION}/bin-${IMAGE_MAGICK_BIN_PREFIX}/Magick-config"
+    echo "  sudo ln -s /usr/lib/${IMAGE_MAGICK_ARCHITECTURE}-linux-gnu/${IMAGE_MAGICK_NAME}-${IMAGE_MAGICK_VERSION}/bin-${IMAGE_MAGICK_BIN_PREFIX}/MagickWand-config"
+    echo "------------------------------------------------------------------------------------------------------------------------"
+  else
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo " Script for easy installation of PHP extension. "
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo "Author:   $AUTHOR"
+    echo "Version:  $VERSION"
+    echo ""
+    echo "Commands:"
+    echo "  list       - list of instaled PHP extension"
+    echo "  raphf      - installation of raphf extension (http://pecl.php.net/package/raphf)"
+    echo "  propro     - installation of propro extension (http://pecl.php.net/package/propro)"
+    echo "  http       - installation of pecl_http extension (http://www.php.net/manual/en/book.http.php)"
+    echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
+    echo "  couchbase  - installation of couchbase extension (http://www.couchbase.com/communities/php/getting-started), Detail: http://www.couchbase.com/communities/c-client-library"
+    echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
+    echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
+    echo "  imagick    - installation of imagick extension (http://pecl.php.net/package/imagick)"
+    echo "  help       - show this message"
+    echo ""
+    echo "Extended help about installation and configuration of imagick extension:"
+    echo "  php-installer extension help --imagick"
+    echo "------------------------------------------------------------------------------------------------------------------------"
+  fi
 } # }}}
 
 case "$SCRIPT_SUB_ACTION" in

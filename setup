@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 if [ -x $APT_GET ] ; then
-  $EXECUTE_FROM_ROOT apt-get install wget tar unzip gzip bzip2 realpath \
-                                     re2c g++ pkg-config curl \
-                                     libcurl4-gnutls-dev libssl-dev libxml2-dev libxslt1-dev \
+  $EXECUTE_FROM_ROOT apt-get install --reinstall --purge  wget tar unzip gzip bzip2 realpath \
+                                     re2c g++ pkg-config curl autoconf make automake \
+                                     libreadline6 libreadline6-dev readline-doc \
+                                     libcurl4-gnutls-dev libssl-dev libxslt1-dev \
                                      libfreetype6-dev libghc-text-icu-dev libicu-dev \
-                                     libjpeg8-dev libpng++-dev \
                                      libmemcached-dev libgearman-dev \
-                                     libvpx-dev libvpx-doc libvpx1 \
-                                     libxpm-dev xpmutils libxpm4 autoconf \
-                                     libcouchbase2-libevent libcouchbase-dev
+                                     libcouchbase2-libevent libcouchbase2-core libcouchbase-dev \
+                                     imagemagick imagemagick-common libmagickwand-dev imagemagick-doc \
+                                     libjpeg-dev libjpeg8 libjpeg8-dev libpng++-dev libgif-dev \
+                                     libvpx-dev libvpx2 libvpx-doc \
+                                     libxpm-dev libxpm4 xpmutils
 fi
 
