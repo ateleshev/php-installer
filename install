@@ -52,6 +52,7 @@ cd $PHP_DIR || exit 5
             --with-mysql=mysqlnd \
             --with-mysqli=mysqlnd \
             --with-pdo-mysql=mysqlnd \
+            --enable-maintainer-zts \
           || exit 6
 #            --with-xmp-dir \
 

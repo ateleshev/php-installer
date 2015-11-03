@@ -88,7 +88,7 @@ EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
-#EXTENSIONS["http:version"]="2.5.1"
+#EXTENSIONS["http:version"]="2.5.3"
 EXTENSIONS["http:version"]="1.7.6"
 EXTENSIONS["http:priority"]=3000
 
@@ -96,7 +96,7 @@ EXTENSIONS["pthreads:url"]="http://pecl.php.net/package/pthreads"
 EXTENSIONS["pthreads:name"]=pthreads
 EXTENSIONS["pthreads:type"]=extension
 EXTENSIONS["pthreads:summary"]="Threading API"
-EXTENSIONS["pthreads:version"]="2.0.10"
+EXTENSIONS["pthreads:version"]="3.0.8"
 EXTENSIONS["pthreads:priority"]=3010
 
 # 4***
@@ -121,6 +121,13 @@ EXTENSIONS["couchbase:type"]=extension
 EXTENSIONS["couchbase:summary"]="Couchbase Server PHP extension"
 EXTENSIONS["couchbase:version"]="2.0.7"
 EXTENSIONS["couchbase:priority"]=4020
+
+EXTENSIONS["cassandra:url"]="http://pecl.php.net/package/cassandra"
+EXTENSIONS["cassandra:name"]=cassandra
+EXTENSIONS["cassandra:type"]=extension
+EXTENSIONS["cassandra:summary"]="DataStax PHP Driver for Apache Cassandra"
+EXTENSIONS["cassandra:version"]="1.0.0"
+EXTENSIONS["cassandra:priority"]=4030
 
 EXTENSIONS["imagick:url"]="http://pecl.php.net/package/imagick"
 EXTENSIONS["imagick:name"]=imagick

@@ -11,6 +11,7 @@ if [ -x $APT_GET ] ; then
                                      imagemagick imagemagick-common libmagickwand-dev imagemagick-doc \
                                      libjpeg-dev libjpeg8 libjpeg8-dev libpng++-dev libgif-dev \
                                      libvpx-dev libvpx2 libvpx-doc \
-                                     libxpm-dev libxpm4 xpmutils
+                                     libxpm-dev libxpm4 xpmutils \
+                                     libuv1-dev 
 fi
 
