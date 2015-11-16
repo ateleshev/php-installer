@@ -89,7 +89,12 @@ function change_version() { # {{{
   done
 } # }}}
 
+function switch_php() { # {{{
+  . $SCRIPT_DIR/switch
+} # }}}
+
 function update_php() { # {{{
+  switch_php
   . $SCRIPT_DIR/update
 } # }}}
 
@@ -128,7 +133,9 @@ function show_help() { # {{{
   echo "Commands:"
   echo "  list       - show list of installed versions of PHP"
   echo "  show       - show used version of PHP"
-  echo "  change     - change used version of PHP"
+  echo "  change     - change build version of PHP"
+  echo "  switch     - switch to current version of PHP"
+  echo "  update     - switch to current version of PHP and restart PHP-FPM"
   echo "  install    - installation of selected version of PHP"
   echo "  extension  - show menu for work with extensions of PHP"
   echo "  configure  - create configuration files of PHP"
@@ -146,6 +153,9 @@ case "$SCRIPT_ACTION" in
   ;;
   change)
     change_version
+  ;;
+  switch)
+    switch_php
   ;;
   update)
     update_php
@@ -173,6 +183,6 @@ case "$SCRIPT_ACTION" in
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|show|change|update|install|extension|configure|delete|setup|help}"
+    echo "Usage: $NAME {list|show|change|switch|update|install|extension|configure|delete|setup|help}"
   ;;
 esac
