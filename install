@@ -17,42 +17,45 @@ fi
 
 cd $PHP_DIR || exit 5
 
-./configure --prefix=$PREFIX \
-            --exec-prefix=$EPREFIX \
-            --with-config-file-scan-dir=$EXTENSION_INI_DIR \
-            --disable-ipv6 \
-            --enable-zip \
-            --enable-ftp \
-            --enable-fpm \
-            --enable-intl \
-            --enable-exif \
-            --enable-soap \
-            --enable-shmop \
-            --enable-libxml \
-            --enable-sockets \
-            --enable-calendar \
-            --enable-mbstring \
-            --enable-maintainer-zts \
-            --with-xsl \
-            --with-curl \
-            --with-zlib \
-            --with-mhash \
-            --with-openssl \
-            --with-mysql=mysqlnd \
-            --with-mysqli=mysqlnd \
-            --with-pdo-mysql=mysqlnd \
-            --with-gd \
-            --enable-gd-native-ttf \
-            --enable-gd-jis-conv \
-            --with-freetype-dir \
-            --with-jpeg-dir \
-            --with-png-dir \
-            --with-vpx-dir \
-            --with-layout=GNU \
-            --with-regex=php \
-            --with-zend-vm=CALL \
-          || exit 6
-#            --with-xmp-dir \
+CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-regex=php --with-zend-vm=CALL"
+
+for cli_option in $@;
+do
+  case "$cli_option" in
+    intl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-intl" ;;
+    exif) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-exif" ;;
+    soap) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-soap" ;;
+    shmop) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-shmop" ;;
+    calendar) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-calendar" ;;
+    mbstring) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-mbstring" ;;
+    zts) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-maintainer-zts" ;;
+    sockets) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-sockets" ;;
+    libxml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-libxml" ;;
+    fpm) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-fpm" ;;
+    ftp) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-ftp" ;;
+    zip) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-zip" ;;
+    xsl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-dom --with-xsl" ;;
+    curl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-curl" ;;
+    zlib) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-zlib" ;;
+    mhash) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-mhash" ;;
+    openssl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-openssl" ;;
+    mysql) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-mysql=mysqlnd" ;;
+    mysqli) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-mysqli=mysqlnd" ;;
+    pdo-mysql) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-pdo --with-pdo-mysql=mysqlnd" ;;
+    gd) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-gd --enable-gd-native-ttf --enable-gd-jis-conv" ;;
+    png) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-png-dir" ;;
+    vpx) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-vpx-dir" ;;
+    xmp) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-xmp-dir" ;;
+    freetype) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-freetype-dir" ;;
+    jpeg) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-jpeg-dir" ;;
+    readline) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-readline" ;;
+  esac
+done;
+
+./configure $CONFIGURE_OPTIONS
+
+# cleaning
+make clean || exit 7
 
 # install
 make install || exit 7

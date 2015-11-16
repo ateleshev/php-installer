@@ -86,8 +86,13 @@ function configure_php() { # {{{
   . $SCRIPT_DIR/configure
 } # }}}
 
-function install_php() { # {{{
-  . $SCRIPT_DIR/install
+function install_php_all() { # {{{
+  . $SCRIPT_DIR/install intl exif soap shmop calendar mbstring zts sockets libxml fpm ftp zip fpm xsl curl zlib mhash mhash openssl mysqli pdo-mysql gd png vpx xmp freetype jpeg
+} # }}}
+
+function install_php_custom() { # {{{
+  PHP_MODULES=$@
+  . $SCRIPT_DIR/install $PHP_MODULES
 } # }}}
 
 function install_extension() { # {{{
@@ -135,7 +140,11 @@ case "$SCRIPT_ACTION" in
     update_php
   ;;
   install)
-    install_php
+    if [ $# -gt 1 ]; then
+      install_php_custom $@
+    else
+      install_php_all;
+    fi
   ;;
   extension)
     install_extension
