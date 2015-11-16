@@ -119,7 +119,7 @@ EXTENSIONS["couchbase:url"]="http://pecl.php.net/package/couchbase"
 EXTENSIONS["couchbase:name"]=couchbase
 EXTENSIONS["couchbase:type"]=extension
 EXTENSIONS["couchbase:summary"]="Couchbase Server PHP extension"
-EXTENSIONS["couchbase:version"]="2.0.7"
+EXTENSIONS["couchbase:version"]="2.1.0"
 EXTENSIONS["couchbase:priority"]=4020
 
 EXTENSIONS["cassandra:url"]="http://pecl.php.net/package/cassandra"
