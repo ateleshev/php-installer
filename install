@@ -17,7 +17,7 @@ fi
 
 cd $PHP_DIR || exit 5
 
-CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-regex=php --with-zend-vm=CALL"
+CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-zend-vm=CALL"
 
 for cli_option in $@;
 do
@@ -37,6 +37,7 @@ do
     xsl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-dom --with-xsl" ;;
     curl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-curl" ;;
     zlib) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-zlib" ;;
+    regex) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-regex=php" ;;
     mhash) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-mhash" ;;
     openssl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-openssl" ;;
     mysql) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-mysql=mysqlnd" ;;

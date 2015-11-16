@@ -15,10 +15,6 @@ install_extension_pthreads() { # {{{
   install_php_pecl_extension pthreads
 } # }}}
 
-install_extension_fileinfo() { # {{{
-  install_php_source_extension fileinfo
-} # }}}
-
 install_extension_raphf() { # {{{
   install_php_pecl_extension raphf
 } # }}}
@@ -45,6 +41,10 @@ install_extension_imagick() { # {{{
 
 install_extension_couchbase() { # {{{
   install_php_pecl_extension couchbase
+} # }}}
+
+install_extension_cassandra() { # {{{
+  install_php_pecl_extension cassandra
 } # }}}
 
 install_extension_xdebug() { # {{{
@@ -89,23 +89,59 @@ install_extension_xdebug() { # {{{
 } # }}}
 
 show_help() { # {{{
-  echo "------------------------------------------------"
-  echo " Script for easy installation of PHP extension. "
-  echo "------------------------------------------------"
-  echo "Author:   $AUTHOR"
-  echo "Version:  $VERSION"
-  echo ""
-  echo "Commands:"
-  echo "  list       - list of instaled PHP extension"
-  echo "  raphf      - installation of raphf extension (http://pecl.php.net/package/raphf)"
-  echo "  propro     - installation of propro extension (http://pecl.php.net/package/propro)"
-  echo "  http       - installation of pecl_http extension (http://www.php.net/manual/en/book.http.php)"
-  echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
-  echo "  couchbase  - installation of couchbase extension (http://www.couchbase.com/communities/php/getting-started), Detail: http://www.couchbase.com/communities/c-client-library"
-  echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
-  echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
-  echo "  imagick    - installation of imagick extension (http://pecl.php.net/package/imagick)"
-  echo "  help       - show this message"
+  if [ -x "$(which display-im6)" ] && [ ${SCRIPT_OPTIONS["imagick"]} == true ]; then
+    IMAGE_MAGICK_INFO=$(display-im6 -version | grep Version)
+
+    IMAGE_MAGICK_NAME=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $2'})
+    IMAGE_MAGICK_VERSION=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $3'} | sed '/\-/s/\-.*//g')
+    IMAGE_MAGICK_BIN_PREFIX=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $4'})
+    IMAGE_MAGICK_ARCHITECTURE=$(echo ${IMAGE_MAGICK_INFO} | awk {'print $5'})
+
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo " ${IMAGE_MAGICK_NAME} (${IMAGE_MAGICK_VERSION}):"
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo "  sudo apt-get install imagemagick imagemagick-common libmagickwand-dev imagemagick-doc"
+    echo "  cd /usr/bin"
+    echo "  sudo ln -s /usr/lib/${IMAGE_MAGICK_ARCHITECTURE}-linux-gnu/${IMAGE_MAGICK_NAME}-${IMAGE_MAGICK_VERSION}/bin-${IMAGE_MAGICK_BIN_PREFIX}/Wand-config"
+    echo "  sudo ln -s /usr/lib/${IMAGE_MAGICK_ARCHITECTURE}-linux-gnu/${IMAGE_MAGICK_NAME}-${IMAGE_MAGICK_VERSION}/bin-${IMAGE_MAGICK_BIN_PREFIX}/Magick-config"
+    echo "  sudo ln -s /usr/lib/${IMAGE_MAGICK_ARCHITECTURE}-linux-gnu/${IMAGE_MAGICK_NAME}-${IMAGE_MAGICK_VERSION}/bin-${IMAGE_MAGICK_BIN_PREFIX}/MagickWand-config"
+    echo "------------------------------------------------------------------------------------------------------------------------"
+  elif [ ${SCRIPT_OPTIONS["cassandra"]} == true ]; then
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo " DataStax C/C++ Driver for Apache Cassandra: http://datastax.github.io/cpp-driver/ "
+    echo "  Code: https://github.com/datastax/cpp-driver "
+    echo "  Binaries: http://downloads.datastax.com/cpp-driver/ubuntu/14.04/ "
+    echo "    -- libuv_1.7.5-1_amd64.deb"
+    echo "    -- libuv-dev_1.7.5-1_amd64.deb"
+    echo "    -- cassandra-cpp-driver_2.1.0-1_amd64.deb"
+    echo "    -- cassandra-cpp-driver-dev_2.1.0-1_amd64.deb"
+    echo "  Docs: http://datastax.github.io/cpp-driver/ "
+    echo "------------------------------------------------------------------------------------------------------------------------"
+  else
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo " Script for easy installation of PHP extension. "
+    echo "------------------------------------------------------------------------------------------------------------------------"
+    echo "Author:   $AUTHOR"
+    echo "Version:  $VERSION"
+    echo ""
+    echo "Commands:"
+    echo "  list       - list of instaled PHP extension"
+    echo "  raphf      - installation of raphf extension (http://pecl.php.net/package/raphf)"
+    echo "  propro     - installation of propro extension (http://pecl.php.net/package/propro)"
+    echo "  http       - installation of pecl_http extension (http://www.php.net/manual/en/book.http.php)"
+    echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
+    echo "  couchbase  - installation of couchbase extension (http://www.couchbase.com/communities/php/getting-started), Detail: http://www.couchbase.com/communities/c-client-library"
+    echo "  cassandra  - installation of cassandra extension (http://datastax.github.io/php-driver/)"
+    echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
+    echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
+    echo "  imagick    - installation of imagick extension (http://pecl.php.net/package/imagick)"
+    echo "  help       - show this message"
+    echo ""
+    echo "Extended help about installation and configuration of imagick|cassandra extension:"
+    echo "  php-installer extension help --imagick"
+    echo "  php-installer extension help --cassandra"
+    echo "------------------------------------------------------------------------------------------------------------------------"
+  fi
 } # }}}
 
 case "$SCRIPT_SUB_ACTION" in
@@ -130,6 +166,9 @@ case "$SCRIPT_SUB_ACTION" in
   couchbase)
     install_extension_couchbase
   ;;
+  cassandra)
+    install_extension_cassandra
+  ;;
   xdebug)
     install_extension_xdebug
   ;;
@@ -139,9 +178,6 @@ case "$SCRIPT_SUB_ACTION" in
   propro)
     install_extension_propro
   ;;
-  fileinfo)
-    install_extension_fileinfo
-  ;;
   imagick)
     install_extension_imagick
   ;;
@@ -149,6 +185,6 @@ case "$SCRIPT_SUB_ACTION" in
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|xdebug|raphf|propro|fileinfo|imagick|help}"
+    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|cassandra|xdebug|raphf|propro|imagick|help}"
   ;;
 esac

@@ -55,6 +55,17 @@ SCRIPT_DIR=$(dirname $SCRIPT)
 
 SCRIPT_ACTION=$1
 SCRIPT_SUB_ACTION=$2
+declare -A SCRIPT_OPTIONS
+
+for ARG in "$@"
+do
+  case "${ARG}" in
+    --*)
+      KEY="$(echo ${ARG} | tr -d '-' | tr '[:upper:]' '[:lower:]')"
+      SCRIPT_OPTIONS[$KEY]=true
+    ;;
+  esac
+done
 
 . $SCRIPT_DIR/environment
 
