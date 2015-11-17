@@ -1,32 +1,15 @@
 #!/usr/bin/env bash
 
 ################################################################################
-# /usr/local/bin
-################################################################################
-create_symlink_to "peardev" "$DIR/bin" "/usr/local/bin"
-create_symlink_to "pecl" "$DIR/bin" "/usr/local/bin"
-create_symlink_to "phar" "$DIR/bin" "/usr/local/bin"
-create_symlink_to "php" "$DIR/bin" "/usr/local/bin"
-create_symlink_to "php-cgi" "$DIR/bin" "/usr/local/bin"
-create_symlink_to "php-config" "$DIR/bin" "/usr/local/bin"
-create_symlink_to "phpize" "$DIR/bin" "/usr/local/bin"
-
-################################################################################
-# /usr/local/sbin
-################################################################################
-create_symlink_to "php-fpm" "$DIR/sbin" "/usr/local/sbin"
-
-################################################################################
 # SUDO
 ################################################################################
-sudo echo "Start modification with root privileges" || exit 1
-
+$EXECUTE_FROM_ROOT echo "Start modification with root privileges" || exit 1
 
 PHP_FPM_PID=$(ps ax | grep  php-fpm:.*$DIR | grep -v grep | awk '{print $1}')
 if [ $PHP_FPM_PID > 0 ] ; then
   echo "Found started php-fpm: $PHP_FPM_PID ($DIR)"
 else
-  sudo $DIR/sbin/php-fpm
+  $EXECUTE_FROM_ROOT $DIR/sbin/php-fpm
 fi
 
 ################################################################################

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+################################################################################
+# /usr/local/bin
+################################################################################
+create_symlink_to "peardev" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "pecl" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "phar" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "php" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "php-cgi" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "php-config" "$DIR/bin" "/usr/local/bin"
+create_symlink_to "phpize" "$DIR/bin" "/usr/local/bin"
+
+################################################################################
+# /usr/local/sbin
+################################################################################
+create_symlink_to "php-fpm" "$DIR/sbin" "/usr/local/sbin"
