@@ -79,14 +79,19 @@ function show_version() { # {{{
 } # }}}
 
 function change_version() { # {{{
-  echo -n "Enter PHP version [$PHP_VERSION]: "
-  while read INPUTTED_VERSION
-  do
-    validate_version $INPUTTED_VERSION
-    echo -n "Change PHP version to $INPUTTED_VERSION ... "
-    echo $INPUTTED_VERSION > $VERSION_FILE || echo "[ Error ]" && echo "[ OK ]"
-    break
-  done
+  if [ $# -eq 1 ]; then
+    validate_version $1
+    echo $1 > $VERSION_FILE || exit 1
+  else
+    echo -n "Enter PHP version [$PHP_VERSION]: "
+    while read INPUTTED_VERSION
+    do
+      validate_version $INPUTTED_VERSION
+      echo -n "Change PHP version to $INPUTTED_VERSION ... "
+      echo $INPUTTED_VERSION > $VERSION_FILE || echo "[ Error ]" && echo "[ OK ]"
+      break
+    done
+  fi
 } # }}}
 
 function switch_php() { # {{{
@@ -152,7 +157,7 @@ case "$SCRIPT_ACTION" in
     show_version
   ;;
   change)
-    change_version
+    change_version $2
   ;;
   switch)
     switch_php
