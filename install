@@ -17,7 +17,8 @@ fi
 
 cd $PHP_DIR || exit 5
 
-CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-zend-vm=CALL --with-pear"
+# --enable-xml required by pear
+CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-zend-vm=CALL --with-pear --enable-xml"
 
 for cli_option in $@;
 do
@@ -33,8 +34,9 @@ do
     sockets) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-sockets" ;;
     tokenizer) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-tokenizer" ;;
     libxml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-libxml" ;;
-    xml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-xml" ;;
-    simplexml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-simplexml" ;;
+    simplexml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-libxml --enable-simplexml" ;;
+    xmlreader) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-libxml --enable-xmlreader" ;;
+    xmlwriter) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-libxml --enable-xmlwriter" ;;
     exif) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-exif" ;;
     soap) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-soap" ;;
     shmop) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-shmop" ;;
@@ -46,7 +48,7 @@ do
     zip) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-zip" ;;
     xsl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-dom --with-xsl" ;;
     curl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-curl" ;;
-    iconv) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-iconv-dir" ;;
+    iconv) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-iconv" ;;
     zlib) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-zlib" ;;
     regex) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-regex=php" ;;
     mhash) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-mhash" ;;
