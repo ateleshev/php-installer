@@ -8,47 +8,47 @@ show_installed_extensions() {
 }
 
 install_extension_pcntl() { # {{{
-  install_php_source_extension pcntl
+  install_php_source_extension pcntl $PCNLT_CUSTOM_VERSION
 } # }}}
 
 install_extension_pthreads() { # {{{
-  install_php_pecl_extension pthreads
+  install_php_pecl_extension pthreads $PTHREADS_CUSTOM_VERSION
 } # }}}
 
 install_extension_raphf() { # {{{
-  install_php_pecl_extension raphf
+  install_php_pecl_extension raphf $RAPHF_CUSTOM_VERSION
 } # }}}
 
 install_extension_propro() { # {{{
-  install_php_pecl_extension propro
+  install_php_pecl_extension propro $PROPRO_CUSTOM_VERSION
 } # }}}
 
 install_extension_http() { # {{{
-  install_php_pecl_extension http
+  install_php_pecl_extension http $HTTP_CUSTOM_VERSION
 } # }}}
 
 install_extension_gearman() { # {{{
-  install_php_pecl_extension gearman
+  install_php_pecl_extension gearman $GEARMAN_CUSTOM_VERSION
 } # }}}
 
 install_extension_memcached() { # {{{
-  install_php_pecl_extension memcached
+  install_php_pecl_extension memcached $MEMCACHED_CUSTOM_VERSION
 } # }}}
 
 install_extension_imagick() { # {{{
-  install_php_pecl_extension imagick
+  install_php_pecl_extension imagick $IMAGICK_CUSTOM_VERSION
 } # }}}
 
 install_extension_couchbase() { # {{{
-  install_php_pecl_extension couchbase
+  install_php_pecl_extension couchbase $COUCHBASE_CUSTOM_VERSION
 } # }}}
 
 install_extension_cassandra() { # {{{
-  install_php_pecl_extension cassandra
+  install_php_pecl_extension cassandra $CASSANDRA_CUSTOM_VERSION
 } # }}}
 
 install_extension_xdebug() { # {{{
-  install_php_pecl_extension xdebug
+  install_php_pecl_extension xdebug $XDEBUG_CUSTOM_VERSION
 
 #  +----------------------------------------------------------------------+
 #  |   /etc/php5/conf.d/xdebug.ini                                        |
