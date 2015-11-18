@@ -17,25 +17,36 @@ fi
 
 cd $PHP_DIR || exit 5
 
-CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-zend-vm=CALL"
+CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-zend-vm=CALL --with-pear"
 
 for cli_option in $@;
 do
   case "$cli_option" in
     intl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-intl" ;;
+    ctype) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-ctype" ;;
+    fileinfo) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-fileinfo" ;;
+    filter) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-filter" ;;
+    json) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-json" ;;
+    phar) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-phar" ;;
+    posix) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-posix" ;;
+    session) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-session" ;;
+    sockets) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-sockets" ;;
+    tokenizer) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-tokenizer" ;;
+    libxml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-libxml" ;;
+    xml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-xml" ;;
+    simplexml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-simplexml" ;;
     exif) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-exif" ;;
     soap) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-soap" ;;
     shmop) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-shmop" ;;
     calendar) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-calendar" ;;
     mbstring) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-mbstring" ;;
     zts) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-maintainer-zts" ;;
-    sockets) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-sockets" ;;
-    libxml) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-libxml" ;;
     fpm) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-fpm" ;;
     ftp) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-ftp" ;;
     zip) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-zip" ;;
     xsl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --enable-dom --with-xsl" ;;
     curl) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-curl" ;;
+    iconv) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-iconv-dir" ;;
     zlib) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-zlib" ;;
     regex) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-regex=php" ;;
     mhash) CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS --with-mhash" ;;
