@@ -147,10 +147,11 @@ EXTENSIONS["xdebug:priority"]=5000
 
 function prepare_php_extension() { # {{{
   EXTENSION=$1
+  CUSTOM_VERSION=$2
   EXTENSION_NAME=${EXTENSIONS["$EXTENSION:name"]}
   EXTENSION_TYPE=${EXTENSIONS["$EXTENSION:type"]}
   EXTENSION_SUMMARY=${EXTENSIONS["$EXTENSION:summary"]}
-  EXTENSION_VERSION=${EXTENSIONS["$EXTENSION:version"]}
+  EXTENSION_VERSION=${CUSTOM_VERSION:-${EXTENSIONS["$EXTENSION:version"]}}
   EXTENSION_PRIORITY=${EXTENSIONS["$EXTENSION:priority"]}
   EXTENSION_FULL_NAME=$EXTENSION_NAME-$EXTENSION_VERSION
   
@@ -222,8 +223,9 @@ function enable_php_extension() { # {{{
   echo "$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO" > $EXTENSION_PATH_TO_INI || exit 1 && echo "Save '$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO' to '$EXTENSION_PATH_TO_INI'"
 } # }}}
 
+# $1 - module name (mandatory); $2 - custom version (optional)
 function install_php_pecl_extension() { # {{{
-  prepare_php_extension $1
+  prepare_php_extension $1 $2
   check_php_extension
 
   cd $DIR_SRC && echo "Change current directory to '$DIR_SRC'" || exit 1
