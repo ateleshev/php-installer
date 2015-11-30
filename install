@@ -18,7 +18,7 @@ fi
 cd $PHP_DIR || exit 5
 
 # --enable-xml required by pear
-CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-zend-vm=CALL --with-pear --enable-xml"
+CONFIGURE_OPTIONS="--prefix=$PREFIX --exec-prefix=$EPREFIX --with-config-file-scan-dir=$EXTENSION_INI_DIR --disable-all --with-layout=GNU --with-zend-vm=CALL --with-pear --enable-xml --enable-libxml"
 
 for cli_option in $@;
 do
