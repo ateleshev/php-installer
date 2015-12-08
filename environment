@@ -136,6 +136,13 @@ EXTENSIONS["imagick:summary"]="Provides a wrapper to the ImageMagick library"
 EXTENSIONS["imagick:version"]="3.1.2"
 EXTENSIONS["imagick:priority"]=4030
 
+EXTENSIONS["redis:url"]="http://pecl.php.net/package/redis"
+EXTENSIONS["redis:name"]=redis
+EXTENSIONS["redis:type"]=extension
+EXTENSIONS["redis:summary"]="Provides a wrapper to the Redis driver"
+EXTENSIONS["redis:version"]="2.2.7"
+EXTENSIONS["redis:priority"]=4040
+
 # 5***
 EXTENSIONS["xdebug:url"]="http://pecl.php.net/package/xdebug"
 EXTENSIONS["xdebug:name"]=xdebug
