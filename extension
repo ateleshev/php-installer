@@ -47,6 +47,10 @@ install_extension_cassandra() { # {{{
   install_php_pecl_extension cassandra $CASSANDRA_CUSTOM_VERSION
 } # }}}
 
+install_extension_redis() { # {{{
+  install_php_pecl_extension redis $redis_CUSTOM_VERSION
+}
+
 install_extension_xdebug() { # {{{
   install_php_pecl_extension xdebug $XDEBUG_CUSTOM_VERSION
 
@@ -132,6 +136,7 @@ show_help() { # {{{
     echo "  pcntl      - installation of pcntl extension (http://www.php.net/manual/en/book.pcntl.php)"
     echo "  couchbase  - installation of couchbase extension (http://www.couchbase.com/communities/php/getting-started), Detail: http://www.couchbase.com/communities/c-client-library"
     echo "  cassandra  - installation of cassandra extension (http://datastax.github.io/php-driver/)"
+    echo "  redis      - installation of redis extension (https://pecl.php.net/package/redis)"
     echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
     echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
     echo "  imagick    - installation of imagick extension (http://pecl.php.net/package/imagick)"
@@ -169,6 +174,9 @@ case "$SCRIPT_SUB_ACTION" in
   cassandra)
     install_extension_cassandra
   ;;
+  redis)
+    install_extension_redis
+  ;;
   xdebug)
     install_extension_xdebug
   ;;
@@ -185,6 +193,6 @@ case "$SCRIPT_SUB_ACTION" in
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|cassandra|xdebug|raphf|propro|imagick|help}"
+    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|cassandra|redis|xdebug|raphf|propro|imagick|help}"
   ;;
 esac
