@@ -108,7 +108,7 @@ function configure_php() { # {{{
 } # }}}
 
 function install_php_all() { # {{{
-  . $SCRIPT_DIR/install intl ctype fileinfo filter json phar posix session sockets tokenizer libxml libxml xml exif soap shmop calendar calendar zts zts ftp zip xsl curl iconv zlib regex mhash openssl mysql mysqli pdo-mysql gd png freetype jpeg readline vpx xmp fpm
+  . $SCRIPT_DIR/install fpm intl ctype fileinfo filter json phar posix session sockets readline tokenizer libxml xml simplexml xsl exif soap shmop calendar zts ftp zip curl iconv zlib regex mhash openssl mysql mysqli pdo-mysql gd png freetype jpeg vpx xmp
 } # }}}
 
 function install_php_custom() { # {{{
