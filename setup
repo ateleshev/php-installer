@@ -12,6 +12,6 @@ if [ -x $APT_GET ] ; then
                                      libjpeg-dev libjpeg8 libjpeg8-dev libpng++-dev libgif-dev \
                                      libvpx-dev libvpx2 libvpx-doc \
                                      libxpm-dev libxpm4 xpmutils \
-                                     libuv1-dev 
+                                     libuv1-dev libgmp-dev
 fi
 
