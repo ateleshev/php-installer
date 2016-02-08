@@ -87,6 +87,7 @@ EXTENSIONS["propro:priority"]=2010
 EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
+EXTENSIONS["http:configure"]=" --with-zts"
 EXTENSIONS["http:summary"]="Extended HTTP Support"
 #EXTENSIONS["http:version"]="2.5.5"
 EXTENSIONS["http:version"]="1.7.6"
@@ -151,6 +152,14 @@ EXTENSIONS["xdebug:type"]=zend_extension
 EXTENSIONS["xdebug:summary"]="Provides functions for function traces and profiling"
 EXTENSIONS["xdebug:version"]="2.3.3"
 EXTENSIONS["xdebug:priority"]=5000
+
+# 6***
+EXTENSIONS["amqp:url"]="http://pecl.php.net/package/amqp"
+EXTENSIONS["amqp:name"]=amqp
+EXTENSIONS["amqp:type"]=extension
+EXTENSIONS["amqp:summary"]="implementation of amqp protocol"
+EXTENSIONS["amqp:version"]="1.6.1"
+EXTENSIONS["amqp:priority"]=5000
 # }}}
 
 function prepare_php_extension() { # {{{
@@ -221,6 +230,7 @@ function install_php_extension() { # {{{
   $PHPIZE || exit 1
 
   # configure
+  echo "./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-shared=PKGS --with-php-config=$PHPCONFIG $EXTENSION_CONGIFURE"
   ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-shared=PKGS --with-php-config=$PHPCONFIG $EXTENSION_CONGIFURE || exit 1
 
   # install
