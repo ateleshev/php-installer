@@ -68,6 +68,14 @@ EXTENSIONS["pcntl:summary"]="Process control"
 EXTENSIONS["pcntl:version"]=$PHP_VERSION
 EXTENSIONS["pcntl:priority"]=1000
 
+EXTENSIONS["opcache:url"]="http://pecl.php.net/package/opcache"
+EXTENSIONS["opcache:name"]=opcache
+EXTENSIONS["opcache:type"]=zend_extension
+EXTENSIONS["opcache:summary"]="Zend OPcache"
+EXTENSIONS["opcache:version"]=$PHP_VERSION
+#EXTENSIONS["opcache:version"]="7.0.5" # <= PHP5.4
+EXTENSIONS["opcache:priority"]=1010
+
 # 2***
 EXTENSIONS["raphf:url"]="http://pecl.php.net/package/raphf"
 EXTENSIONS["raphf:name"]=raphf

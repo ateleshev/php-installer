@@ -7,6 +7,12 @@ show_installed_extensions() {
   cat $EXTENSION_INI_DIR/*
 }
 
+install_extension_opcache() { # {{{
+  # install_php_pecl_extension pthreads $PTHREADS_CUSTOM_VERSION
+  prepare_php_extension opcache
+  enable_php_extension
+} # }}}
+
 install_extension_pcntl() { # {{{
   install_php_source_extension pcntl $PCNLT_CUSTOM_VERSION
 } # }}}
@@ -157,6 +163,9 @@ case "$SCRIPT_SUB_ACTION" in
   list)
     show_installed_extensions
   ;;
+  opcache)
+    install_extension_opcache
+  ;;
   pcntl)
     install_extension_pcntl
   ;;
@@ -180,8 +189,12 @@ case "$SCRIPT_SUB_ACTION" in
   ;;
   redis)
     install_extension_redis
+  ;;
   amqp)
     install_extension_amqp
+  ;;
+  imagick)
+    install_extension_imagick
   ;;
   xdebug)
     install_extension_xdebug
@@ -192,13 +205,10 @@ case "$SCRIPT_SUB_ACTION" in
   propro)
     install_extension_propro
   ;;
-  imagick)
-    install_extension_imagick
-  ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|pcntl|pthreads|http|gearman|memcached|couchbase|cassandra|redis|xdebug|raphf|propro|imagick|help}"
+    echo "Usage: $NAME {list|opcache|pcntl|pthreads|http[raphf|propro]|gearman|memcached|couchbase|cassandra|redis|imagick|xdebug|help}"
   ;;
 esac
