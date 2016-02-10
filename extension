@@ -49,7 +49,11 @@ install_extension_cassandra() { # {{{
 
 install_extension_redis() { # {{{
   install_php_pecl_extension redis $redis_CUSTOM_VERSION
-}
+} # }}}
+
+install_extension_amqp() { # {{{
+  install_php_pecl_extension amqp $AMQP_CUSTOM_VERSION
+} # }}}
 
 install_extension_xdebug() { # {{{
   install_php_pecl_extension xdebug $XDEBUG_CUSTOM_VERSION
@@ -176,6 +180,8 @@ case "$SCRIPT_SUB_ACTION" in
   ;;
   redis)
     install_extension_redis
+  amqp)
+    install_extension_amqp
   ;;
   xdebug)
     install_extension_xdebug

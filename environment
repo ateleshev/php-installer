@@ -147,6 +147,13 @@ EXTENSIONS["redis:summary"]="Provides a wrapper to the Redis driver"
 EXTENSIONS["redis:version"]="2.2.7"
 EXTENSIONS["redis:priority"]=4040
 
+EXTENSIONS["amqp:url"]="http://pecl.php.net/package/amqp"
+EXTENSIONS["amqp:name"]=amqp
+EXTENSIONS["amqp:type"]=extension
+EXTENSIONS["amqp:summary"]="implementation of amqp protocol"
+EXTENSIONS["amqp:version"]="1.6.1"
+EXTENSIONS["amqp:priority"]=4050
+
 # 5***
 EXTENSIONS["xdebug:url"]="http://pecl.php.net/package/xdebug"
 EXTENSIONS["xdebug:name"]=xdebug
@@ -224,6 +231,7 @@ function install_php_extension() { # {{{
   $PHPIZE || exit 1
 
   # configure
+  #  echo "./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-shared=PKGS --with-php-config=$PHPCONFIG $EXTENSION_CONGIFURE"
   ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-shared=PKGS --with-php-config=$PHPCONFIG $EXTENSION_CONGIFURE || exit 1
 
   # install
