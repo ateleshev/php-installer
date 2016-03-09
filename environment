@@ -126,7 +126,7 @@ EXTENSIONS["cassandra:url"]="http://pecl.php.net/package/cassandra"
 EXTENSIONS["cassandra:name"]=cassandra
 EXTENSIONS["cassandra:type"]=extension
 EXTENSIONS["cassandra:summary"]="DataStax PHP Driver for Apache Cassandra"
-EXTENSIONS["cassandra:version"]="1.0.0"
+EXTENSIONS["cassandra:version"]="1.1.0"
 EXTENSIONS["cassandra:priority"]=4030
 
 EXTENSIONS["imagick:url"]="http://pecl.php.net/package/imagick"
