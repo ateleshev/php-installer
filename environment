@@ -68,19 +68,29 @@ EXTENSIONS["pcntl:summary"]="Process control"
 EXTENSIONS["pcntl:version"]=$PHP_VERSION
 EXTENSIONS["pcntl:priority"]=1000
 
+EXTENSIONS["opcache:url"]="http://pecl.php.net/package/opcache"
+EXTENSIONS["opcache:name"]=opcache
+EXTENSIONS["opcache:type"]=zend_extension
+EXTENSIONS["opcache:summary"]="Zend OPcache"
+EXTENSIONS["opcache:version"]=$PHP_VERSION
+#EXTENSIONS["opcache:version"]="7.0.5" # <= PHP5.4
+EXTENSIONS["opcache:priority"]=1010
+
 # 2***
 EXTENSIONS["raphf:url"]="http://pecl.php.net/package/raphf"
 EXTENSIONS["raphf:name"]=raphf
 EXTENSIONS["raphf:type"]=extension
 EXTENSIONS["raphf:summary"]="Resource and persistent handles factory"
-EXTENSIONS["raphf:version"]="1.1.0"
+EXTENSIONS["raphf:version"]="1.1.2" # PHP5.6
+#EXTENSIONS["raphf:version"]="2.0.0" # PHP7
 EXTENSIONS["raphf:priority"]=2000
 
 EXTENSIONS["propro:url"]="http://pecl.php.net/package/propro"
 EXTENSIONS["propro:name"]=propro
 EXTENSIONS["propro:type"]=extension
 EXTENSIONS["propro:summary"]="Property proxy"
-EXTENSIONS["propro:version"]="1.0.0"
+EXTENSIONS["propro:version"]="1.0.0" # PHP5.6
+#EXTENSIONS["propro:version"]="2.0.0" # PHP7
 EXTENSIONS["propro:priority"]=2010
 
 # 3***
@@ -88,15 +98,17 @@ EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
-#EXTENSIONS["http:version"]="2.5.3"
-EXTENSIONS["http:version"]="1.7.6"
+EXTENSIONS["http:version"]="2.5.5" # PHP5.6 
+#EXTENSIONS["http:version"]="3.0.0" # PHP7
+#EXTENSIONS["http:version"]="1.7.6" # sf-1.4
 EXTENSIONS["http:priority"]=3000
 
 EXTENSIONS["pthreads:url"]="http://pecl.php.net/package/pthreads"
 EXTENSIONS["pthreads:name"]=pthreads
 EXTENSIONS["pthreads:type"]=extension
 EXTENSIONS["pthreads:summary"]="Threading API"
-EXTENSIONS["pthreads:version"]="3.0.8"
+EXTENSIONS["pthreads:version"]="2.0.10" # PHP5.6
+#EXTENSIONS["pthreads:version"]="3.1.5" # PHP7
 EXTENSIONS["pthreads:priority"]=3010
 
 # 4***
@@ -133,7 +145,7 @@ EXTENSIONS["imagick:url"]="http://pecl.php.net/package/imagick"
 EXTENSIONS["imagick:name"]=imagick
 EXTENSIONS["imagick:type"]=extension
 EXTENSIONS["imagick:summary"]="Provides a wrapper to the ImageMagick library"
-EXTENSIONS["imagick:version"]="3.1.2"
+EXTENSIONS["imagick:version"]="3.3.0"
 EXTENSIONS["imagick:priority"]=4030
 
 EXTENSIONS["redis:url"]="http://pecl.php.net/package/redis"
@@ -142,6 +154,13 @@ EXTENSIONS["redis:type"]=extension
 EXTENSIONS["redis:summary"]="Provides a wrapper to the Redis driver"
 EXTENSIONS["redis:version"]="2.2.7"
 EXTENSIONS["redis:priority"]=4040
+
+EXTENSIONS["amqp:url"]="http://pecl.php.net/package/amqp"
+EXTENSIONS["amqp:name"]=amqp
+EXTENSIONS["amqp:type"]=extension
+EXTENSIONS["amqp:summary"]="implementation of amqp protocol"
+EXTENSIONS["amqp:version"]="1.6.1"
+EXTENSIONS["amqp:priority"]=4050
 
 # 5***
 EXTENSIONS["xdebug:url"]="http://pecl.php.net/package/xdebug"
@@ -220,6 +239,7 @@ function install_php_extension() { # {{{
   $PHPIZE || exit 1
 
   # configure
+  #  echo "./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-shared=PKGS --with-php-config=$PHPCONFIG $EXTENSION_CONGIFURE"
   ./configure --prefix=$PREFIX --exec-prefix=$EPREFIX --enable-shared=PKGS --with-php-config=$PHPCONFIG $EXTENSION_CONGIFURE || exit 1
 
   # install
