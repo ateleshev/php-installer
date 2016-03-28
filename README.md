@@ -34,3 +34,17 @@ Script for easy installation more one version of PHP.
 Script for easy installation of PHP extension.
 .....
 ```
+
+##PHP7 + memcached
+
+```console
+git clone https://github.com/php-memcached-dev/php-memcached
+cd php-memcached
+git checkout php7
+phpize
+./configure
+make
+sudo make install
+
+./configure --with-php-config=/absolute/path/to/php7-config
+```

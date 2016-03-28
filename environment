@@ -247,7 +247,15 @@ function install_php_extension() { # {{{
 } # }}}
 
 function enable_php_extension() { # {{{
-  echo "$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO" > $EXTENSION_PATH_TO_INI || exit 1 && echo "Save '$EXTENSION_TYPE=$EXTENSION_PATH_TO_SO' to '$EXTENSION_PATH_TO_INI'"
+  if [ ! -d ${EXTENSION_INI_DIR} ] ; then
+    mkdir -p ${EXTENSION_INI_DIR} || exit 1
+  fi;
+
+  if [ ! -f ${EXTENSION_PATH_TO_INI} ] ; then
+    touch ${EXTENSION_PATH_TO_INI} || exit 1
+  fi;
+
+  echo "${EXTENSION_TYPE}=${EXTENSION_PATH_TO_SO}" > ${EXTENSION_PATH_TO_INI} || exit 1 && echo "Save '${EXTENSION_TYPE}=${EXTENSION_PATH_TO_SO}' to '${EXTENSION_PATH_TO_INI}'"
 } # }}}
 
 # $1 - module name (mandatory); $2 - custom version (optional)
