@@ -16,11 +16,11 @@ fi
 # PHP: default socket
 ################################################################################
 
-create_symlink_to "php5-fpm.sock" "$DIR/var/run" "/var/run"
+#create_symlink_to "php5-fpm.sock" "$DIR/var/run" "/var/run"
 
 ################################################################################
 # Nginx configuration: Add upstream 
 ################################################################################
 
-create_symlink_to "upstream.conf" "$SCRIPT_DIR/etc/nginx" "/etc/nginx/conf.d"
+#create_symlink_to "upstream.conf" "$SCRIPT_DIR/etc/nginx" "/etc/nginx/conf.d"
 

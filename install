@@ -8,7 +8,7 @@ fi
 
 cd $DIR_SRC || exit 2
 if [ ! -f $DIR_SRC/$PHP_ARCHIVE_NAME ] ; then
-  wget $DOWNLOAD_URL || exit 3
+  curl -sL $DOWNLOAD_URL > $PHP_ARCHIVE_NAME || exit 3
 fi
 
 if [ ! -d $PHP_DIR ] ; then

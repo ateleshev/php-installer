@@ -48,6 +48,9 @@ if [ -x "$PEAR" ]; then
   PEAR_DOWNLOAD_DIR=$($PEAR config-get download_dir)
 fi
 
+PECL_DOWNLOAD_URL="https://pecl.php.net/get"
+PECL_DOWNLOAD_ARCHIVE_TYPE="tgz"
+
 function validate_version() { # {{{
   if [[ ! "$1" =~ ^[0-9]+(\.[0-9]+){1,2}$ ]] ; then 
     echo "Incorrect PHP version: '$1' (correct example: 5.4.28)"
@@ -186,6 +189,8 @@ function prepare_php_extension() { # {{{
   else
     EXTENSION_SOURCE=${EXTENSIONS["$EXTENSION:source"]}
   fi
+
+  EXTENSION_ARCHIVE="${EXTENSION_SOURCE}.${PECL_DOWNLOAD_ARCHIVE_TYPE}"
   
   if [ ! ${EXTENSIONS["$EXTENSION:configure"]} ] ; then
     EXTENSION_CONGIFURE=""
@@ -264,21 +269,21 @@ function install_php_pecl_extension() { # {{{
   check_php_extension
 
   cd $DIR_SRC && echo "Change current directory to '$DIR_SRC'" || exit 1
-
-  echo "Try to downloaded: '$EXTENSION_FULL_NAME'"
-  $PECL download $EXTENSION_FULL_NAME || exit 2
+  echo "Download ('${EXTENSION_FULL_NAME}'): ${PECL_DOWNLOAD_URL}/${EXTENSION_FULL_NAME}.${PECL_DOWNLOAD_ARCHIVE_TYPE} > ${EXTENSION_ARCHIVE}"
+  curl -sL "${PECL_DOWNLOAD_URL}/${EXTENSION_FULL_NAME}.${PECL_DOWNLOAD_ARCHIVE_TYPE}" > "${EXTENSION_SOURCE}.${PECL_DOWNLOAD_ARCHIVE_TYPE}" || exit 2
+  # $PECL download $EXTENSION_FULL_NAME || exit 2
 
   if [ -f $DIR_SRC/channel.xml ] ; then
     rm $DIR_SRC/channel.xml
   fi;
   
-  echo "Start unzip: '$EXTENSION_ARCHIVE'"
-  if [ -f $EXTENSION_SOURCE.tgz ]; then
-    gzip -d < $EXTENSION_SOURCE.tgz | tar -xvf - || exit 3
+  echo "Start unzip: '${EXTENSION_ARCHIVE}'"
+  if [ -f ${EXTENSION_ARCHIVE} ]; then
+    gzip -d < ${EXTENSION_ARCHIVE} | tar -xvf - || exit 3
   elif [ -f $EXTENSION_SOURCE.tar ]; then
     tar -xvf $EXTENSION_SOURCE.tar || exit 4
   else
-    echo "Incorrect $EXTENSION_SOURCE file extension, allowed: tgz, tar"
+    echo "Incorrect ${EXTENSION_SOURCE} file extension, allowed: tgz, tar"
     exit 5
   fi
 
