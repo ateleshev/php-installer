@@ -38,7 +38,7 @@ function command_exists() { # {{{
   command_exists awk
   command_exists tar
   command_exists sed
-  command_exists wget
+  command_exists curl
   command_exists find
   command_exists grep
   command_exists make

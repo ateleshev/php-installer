@@ -1,24 +1,22 @@
 #!/usr/bin/env bash
 
+# Couchbase:
+#  http://www.couchbase.com/communities/c-client-library
+#
+# For Debian or Ubuntu
+# Add to APT sources.list
+#  deb http://packages.couchbase.com/ubuntu trusty trusty/main
+
 if [ -x $APT_GET ] ; then
-  $EXECUTE_FROM_ROOT apt-get install --reinstall --purge  curl tar unzip gzip bzip2 realpath \
-                                     re2c g++ pkg-config curl autoconf make automake \
+  $EXECUTE_FROM_ROOT apt-get install --reinstall --purge curl tar zip unzip gzip bzip2 realpath \
+                                     re2c cpp g++ pkg-config autoconf make automake \
                                      libreadline6 libreadline6-dev \
-                                     libcurl4-gnutls-dev libssl-dev libxslt1-dev \
+                                     libcurl4-openssl-dev libssl-dev libxslt1-dev \
                                      libfreetype6-dev libghc-text-icu-dev libicu-dev \
                                      libmemcached-dev libgearman-dev \
                                      imagemagick imagemagick-common libmagickwand-dev imagemagick-doc \
-                                     libjpeg-dev libjpeg8 libjpeg8-dev libpng++-dev libgif-dev \
-                                     libvpx-dev libvpx-doc \
-                                     libxpm-dev libxpm4 xpmutils \
-                                     libgmp-dev
+                                     libjpeg-dev libpng++-dev libgif-dev \
+                                     libvpx-dev libxpm-dev libgmp-dev \
+                                     libcouchbase2-libevent libcouchbase2-core libcouchbase-dev
 fi
-
-# libuv1-dev \
-# libcouchbase2-libevent libcouchbase2-core libcouchbase-dev \
-
-
-# Ubunta (--reinstall)
-# cpp g++ autoconf
-# libxml2-dev libcurl4-openssl-dev libssl-dev libvpx-dev libjpeg-dev libjpeg8-dev libpng12-dev libgif-dev libxpm-dev libfreetype6-dev libicu-dev libreadline6-dev libxslt1-dev
 

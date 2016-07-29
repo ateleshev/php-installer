@@ -92,8 +92,8 @@ EXTENSIONS["propro:url"]="http://pecl.php.net/package/propro"
 EXTENSIONS["propro:name"]=propro
 EXTENSIONS["propro:type"]=extension
 EXTENSIONS["propro:summary"]="Property proxy"
-EXTENSIONS["propro:version"]="1.0.0" # PHP5.6
-#EXTENSIONS["propro:version"]="2.0.0" # PHP7
+EXTENSIONS["propro:version"]="1.0.2" # PHP5.6
+#EXTENSIONS["propro:version"]="2.0.1" # PHP7
 EXTENSIONS["propro:priority"]=2010
 
 # 3***
@@ -101,8 +101,8 @@ EXTENSIONS["http:url"]="http://pecl.php.net/package/pecl_http"
 EXTENSIONS["http:name"]=pecl_http
 EXTENSIONS["http:type"]=extension
 EXTENSIONS["http:summary"]="Extended HTTP Support"
-EXTENSIONS["http:version"]="2.5.5" # PHP5.6 
-#EXTENSIONS["http:version"]="3.0.0" # PHP7
+EXTENSIONS["http:version"]="2.5.6" # PHP5.6
+#EXTENSIONS["http:version"]="3.0.1" # PHP7
 #EXTENSIONS["http:version"]="1.7.6" # sf-1.4
 EXTENSIONS["http:priority"]=3000
 
@@ -111,7 +111,7 @@ EXTENSIONS["pthreads:name"]=pthreads
 EXTENSIONS["pthreads:type"]=extension
 EXTENSIONS["pthreads:summary"]="Threading API"
 EXTENSIONS["pthreads:version"]="2.0.10" # PHP5.6
-#EXTENSIONS["pthreads:version"]="3.1.5" # PHP7
+#EXTENSIONS["pthreads:version"]="3.1.6" # PHP7
 EXTENSIONS["pthreads:priority"]=3010
 
 # 4***
@@ -134,7 +134,7 @@ EXTENSIONS["couchbase:url"]="http://pecl.php.net/package/couchbase"
 EXTENSIONS["couchbase:name"]=couchbase
 EXTENSIONS["couchbase:type"]=extension
 EXTENSIONS["couchbase:summary"]="Couchbase Server PHP extension"
-EXTENSIONS["couchbase:version"]="2.1.0"
+EXTENSIONS["couchbase:version"]="2.2.0"
 EXTENSIONS["couchbase:priority"]=4020
 
 EXTENSIONS["cassandra:url"]="http://pecl.php.net/package/cassandra"
@@ -148,7 +148,7 @@ EXTENSIONS["imagick:url"]="http://pecl.php.net/package/imagick"
 EXTENSIONS["imagick:name"]=imagick
 EXTENSIONS["imagick:type"]=extension
 EXTENSIONS["imagick:summary"]="Provides a wrapper to the ImageMagick library"
-EXTENSIONS["imagick:version"]="3.3.0"
+EXTENSIONS["imagick:version"]="3.4.1"
 EXTENSIONS["imagick:priority"]=4030
 
 EXTENSIONS["redis:url"]="http://pecl.php.net/package/redis"
@@ -162,7 +162,7 @@ EXTENSIONS["amqp:url"]="http://pecl.php.net/package/amqp"
 EXTENSIONS["amqp:name"]=amqp
 EXTENSIONS["amqp:type"]=extension
 EXTENSIONS["amqp:summary"]="implementation of amqp protocol"
-EXTENSIONS["amqp:version"]="1.6.1"
+EXTENSIONS["amqp:version"]="1.7.1"
 EXTENSIONS["amqp:priority"]=4050
 
 # 5***
@@ -170,7 +170,7 @@ EXTENSIONS["xdebug:url"]="http://pecl.php.net/package/xdebug"
 EXTENSIONS["xdebug:name"]=xdebug
 EXTENSIONS["xdebug:type"]=zend_extension
 EXTENSIONS["xdebug:summary"]="Provides functions for function traces and profiling"
-EXTENSIONS["xdebug:version"]="2.3.3"
+EXTENSIONS["xdebug:version"]="2.4.0"
 EXTENSIONS["xdebug:priority"]=5000
 # }}}
 
