@@ -61,6 +61,10 @@ install_extension_amqp() { # {{{
   install_php_pecl_extension amqp $AMQP_CUSTOM_VERSION
 } # }}}
 
+install_extension_ssh2() { # {{{
+  install_php_pecl_extension ssh2 $SSH2_CUSTOM_VERSION
+} # }}}
+
 install_extension_xdebug() { # {{{
   install_php_pecl_extension xdebug $XDEBUG_CUSTOM_VERSION
 
@@ -150,6 +154,7 @@ show_help() { # {{{
     echo "  memcached  - installation of memcached extension (http://ua2.php.net/manual/ru/book.memcached.php)"
     echo "  gearman    - installation of gearman extension (http://ua2.php.net/manual/ru/book.gearman.php)"
     echo "  imagick    - installation of imagick extension (http://pecl.php.net/package/imagick)"
+    echo "  ssh2       - installation of ssh2 extension (http://pecl.php.net/package/ssh2)"
     echo "  help       - show this message"
     echo ""
     echo "Extended help about installation and configuration of imagick|cassandra extension:"
@@ -205,10 +210,13 @@ case "$SCRIPT_SUB_ACTION" in
   propro)
     install_extension_propro
   ;;
+  ssh2)
+    install_extension_ssh2
+  ;;
   help)
     show_help
   ;;
   *)
-    echo "Usage: $NAME {list|opcache|pcntl|pthreads|http[raphf|propro]|gearman|memcached|couchbase|cassandra|redis|imagick|xdebug|help}"
+    echo "Usage: $NAME {list|opcache|pcntl|pthreads|http[raphf|propro]|gearman|memcached|couchbase|cassandra|redis|imagick|xdebug|ssh2|help}"
   ;;
 esac

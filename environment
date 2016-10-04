@@ -165,6 +165,13 @@ EXTENSIONS["amqp:summary"]="implementation of amqp protocol"
 EXTENSIONS["amqp:version"]="1.7.1"
 EXTENSIONS["amqp:priority"]=4050
 
+EXTENSIONS["ssh2:url"]="https://pecl.php.net/package/ssh2"
+EXTENSIONS["ssh2:name"]=ssh2
+EXTENSIONS["ssh2:type"]=extension
+EXTENSIONS["ssh2:summary"]="Bindings for the libssh2 library"
+EXTENSIONS["ssh2:version"]="0.13"
+EXTENSIONS["ssh2:priority"]=4060
+
 # 5***
 EXTENSIONS["xdebug:url"]="http://pecl.php.net/package/xdebug"
 EXTENSIONS["xdebug:name"]=xdebug
